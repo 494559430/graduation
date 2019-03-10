@@ -15,8 +15,9 @@
 				dataType:"json",
 				type:"post",
 				success:function(data){
+                    alert(data.msg+"!!!");
 					if(data.flag=="success"){
-					alert(data.msg+"!!!");
+					alert("成功!!!");
 					}
 				},
 				error:function(data){
