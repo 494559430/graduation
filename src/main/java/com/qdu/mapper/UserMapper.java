@@ -6,5 +6,6 @@ import com.qdu.bean.User;
 @Repository
 public interface UserMapper {
 	int add(User user);
+	int delect(User user);
 
 }
