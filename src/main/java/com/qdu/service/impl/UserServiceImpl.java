@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService{
 	
 	@Override
 	public int add(User user) {
+		int b=132;
 		int i =mapper.add(user);
 		if (i<=0) {
 			throw new RuntimeException("添加用户"+user.getUsername()+"失败");
