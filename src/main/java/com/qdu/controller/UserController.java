@@ -25,10 +25,7 @@ public class UserController {
 			service.add(user);
 			result.put("flag", "success");
 			result.put("msg", user.getUsername()+"成功");
-		} catch (RuntimeException re) {
-			result.put("flag", "error");
-			result.put("msg", re.getMessage());
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			result.put("flag", "error");
 			result.put("msg", e.getMessage());

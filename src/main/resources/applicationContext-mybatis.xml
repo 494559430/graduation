@@ -24,7 +24,7 @@
 		<property name="dataSource" ref="ds" />
 		<property name="mapperLocations" >
 			<array>
-				<value>classpath:com/qdu/mapper/*.xml</value>
+				<value>classpath:com/qdu/mapper/*Mapper.xml</value>
 			</array>
 		</property>
 		<property name="typeAliasesPackage" value="com.qdu.bean"></property>
@@ -41,5 +41,6 @@
 	</bean>
 	
 	<tx:annotation-driven proxy-target-class="true" transaction-manager="tx"/>
-	
+
+	<context:component-scan base-package="com.qdu"></context:component-scan>
 </beans>

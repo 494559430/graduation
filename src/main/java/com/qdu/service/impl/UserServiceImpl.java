@@ -19,7 +19,7 @@ public class UserServiceImpl implements UserService{
 	public int add(User user) {
 		int i =mapper.add(user);
 		if (i<=0) {
-			throw new RuntimeException("添加用户"+user.getUsername()+"失败sb");
+			throw new RuntimeException("添加用户"+user.getUsername()+"失败");
 		} else {
 			return i;
 		}
