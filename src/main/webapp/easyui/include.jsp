@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
 <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/easyui-1.5/jquery.easyui.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/easyui-1.5/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
