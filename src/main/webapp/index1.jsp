@@ -23,12 +23,18 @@
     </div>
     <div data-options="region:'west',title:'导航'" style="width:250px;">
         <div id="aa" class="easyui-accordion" style="width:250px;height:300px;" data-options="fit:true,multiple:false">
-
-            <div title="住宿管理" data-options="iconCls:'icon-reload'" style="padding:10px;">
+            <div title="员工管理" data-options="iconCls:'icon-reload'" style="padding:10px;">
                 <ul class="easyui-tree">
-                    <li><a class="opts" title="房间管理" url="/turn/tolist"><span style="display: block;width: 180px">房间管理</span></a></li>
-                    <li><a class="opts" title="房间出租" url="/turn/tolist2"><span style="display: block;width: 180px">房间出租</span></a></li>
-                    <li><a class="opts" title="房间出租" url="/turn/tolist2"><span style="display: block;width: 180px">房间出租</span></a></li>
+                    <li><a class="opts" title="职位添加" url="/emp/addJob"><span style="display: block;width: 180px">部门管理</span></a></li>
+                    <li><a class="opts" title="员工管理" url="/emp/emp"><span style="display: block;width: 180px">员工管理</span></a></li>
+
+                </ul>
+            </div>
+            <div title="员工管理" data-options="iconCls:'icon-reload'" style="padding:10px;">
+                <ul class="easyui-tree">
+                    <li><a class="opts" title="部门管理" url="/turn/tolist"><span style="display: block;width: 180px">房间管理</span></a></li>
+                    <li><a class="opts" title="员工出租" url="/turn/tolist2"><span style="display: block;width: 180px">房间出租</span></a></li>
+
                 </ul>
             </div>
 

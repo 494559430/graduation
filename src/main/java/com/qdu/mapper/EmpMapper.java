@@ -1,7 +1,9 @@
 package com.qdu.mapper;
 
 import com.qdu.bean.Emp;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface EmpMapper {
     int deleteByPrimaryKey(Integer empid);
 
