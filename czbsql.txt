@@ -1,0 +1,19 @@
+create table emp(
+empid int PRIMARY key auto_increment, 
+empname VARCHAR(32),
+idcard varchar(32),
+sex int,#0代表女1代表男
+email varchar(32),
+loc VARCHAR(200),
+phone varchar(32),
+hiredate varchar(32),
+sal varchar(32),
+leavedate varchar(32),
+jobId VARCHAR(32),
+state int #0代表离职1为店长2为普通店员 
+);
+create table job(
+jobId int PRIMARY key auto_increment,
+jobName VARCHAR(32),
+shopid int  
+);
