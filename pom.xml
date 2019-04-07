@@ -212,6 +212,11 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
+    <dependency><!-- 分页插件 -->
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+      <version>4.1.6</version>
+    </dependency>
   </dependencies>
 
   <build>

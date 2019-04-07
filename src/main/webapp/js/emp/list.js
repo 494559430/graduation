@@ -6,15 +6,22 @@ $(function () {
         pagination: true,
         rownumbers: true,
         pageNumber: 1,
-        pageSize: 5,
-        pageList: [3, 5, 10],
+        pageSize: 10,
+        pageList: [10, 20, 30],
         fit: true,
         fitColumns:true,
         columns: [[
             // 复选框、单车编号、单车型号、供应商、单车类别、剩余数量、操作按钮。
             // {title: "复选框", field: "id",checkbox:true},
-            {title: "姓名", field: "empName",align:"center",width:150},
-            {title: "性别", field: "sex",align:"center",width:50},
+            {title: "姓名", field: "empname",align:"center",width:150},
+            {title: "性别", field: "sex",align:"center",width:50,formatter:function (value,row,index) {
+                if (value==0){
+                    return "女"
+                }else if (value==1){
+                    return "男";
+                }
+
+            }},
 
             {title: "职位", field: "jobName",align:"center",width:150},
             {title: "薪资", field: "sal",align:"center",width:150},
@@ -30,7 +37,7 @@ $(function () {
 
             }},
             {title: "操作", field: "do" ,align:"center",width:175,formatter:function (value,row,index) {
-                return "<button onclick='eventobj.update2(\""+row.rid+"\")'>修改</button><button onclick='eventobj.remove2(\""+row.rid+"\")'>删除</button>";
+                return "<button onclick='eventobj.update(\""+row.empid+"\")'>修改</button><button onclick='eventobj.remove2(\""+row.rid+"\")'>解雇</button>";
             }}
         ]],
         toolbar: '#dg-toolbar'
@@ -72,16 +79,16 @@ var eventobj = {
             width: 400,
             height: 480,
             closed: false,
-            href: contextPath+"/pages/emp/AddAndUpdate.jsp",
+            href: contextPath+"/emp/addAndUpdate",
             modal: true,
             buttons:[{
                 text:"添加",
                 iconCls:'icon-add',
                 handler:function () {
                     $("#emp-form").form("submit",{
-                        url:contextPath+'/room/add',
+                        url:contextPath+'/emp/addEmp',
                         onSubmit:function (p) {
-                            p.etoak = "tonight";
+                            //p.etoak = "tonight";
                             //验证emp-form表单项是否非空
                             return $("#emp-form").form("validate");
                         },
@@ -108,8 +115,8 @@ var eventobj = {
         })
 
     },
-    update:function () {
-        var s = $('#dg').datagrid("getSelected");
+    update:function (empid) {
+        /*var s = $('#dg').datagrid("getSelected");
         if (s ==null){
             $.messager.show({
                 title:'提示',
@@ -118,20 +125,20 @@ var eventobj = {
                 showType:'slide'
             });
             return ;
-        }
+        }*/
         $("#emp-dialog").dialog({
                 title: '修改',
                 width: 400,
                 height: 480,
                 closed: false,
-                href: contextPath+"/emp/empAddAndUpdate?id="+s.id,
+                href: contextPath+"/emp/addAndUpdate?id="+empid,
                 modal: true,
                 buttons:[{
                     text:'修改',
                     iconCls:'icon-edit',
                     handler:function () {
                         $("#emp-form").form("submit",{
-                            url:contextPath+"/room/update",
+                            url:contextPath+"/emp/update",
                             onSubmit:function (p) {
                                 // p.id = s.id;
                                 return $("#emp-form").form("validate");

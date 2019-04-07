@@ -11,6 +11,8 @@ public class Emp {
 
     private String email;
 
+    private String loc;
+
     private String phone;
 
     private String hiredate;
@@ -20,7 +22,7 @@ public class Emp {
     private String leavedate;
 
     private String jobid;
-
+    private String jobName;
     private Integer state;
 
     public Integer getEmpid() {
@@ -61,6 +63,14 @@ public class Emp {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public String getLoc() {
+        return loc;
+    }
+
+    public void setLoc(String loc) {
+        this.loc = loc == null ? null : loc.trim();
     }
 
     public String getPhone() {
@@ -109,5 +119,13 @@ public class Emp {
 
     public void setState(Integer state) {
         this.state = state;
+    }
+
+    public String getJobName() {
+        return jobName;
+    }
+
+    public void setJobName(String jobName) {
+        this.jobName = jobName;
     }
 }

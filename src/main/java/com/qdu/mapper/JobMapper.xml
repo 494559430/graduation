@@ -15,6 +15,12 @@
     from job
     where jobId = #{jobid,jdbcType=INTEGER}
   </select>
+  <select id="selectByShopid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from job
+    where shopid = #{shopid,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from job
     where jobId = #{jobid,jdbcType=INTEGER}

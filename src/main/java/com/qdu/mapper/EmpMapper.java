@@ -3,6 +3,8 @@ package com.qdu.mapper;
 import com.qdu.bean.Emp;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface EmpMapper {
     int deleteByPrimaryKey(Integer empid);
@@ -16,4 +18,6 @@ public interface EmpMapper {
     int updateByPrimaryKeySelective(Emp record);
 
     int updateByPrimaryKey(Emp record);
+
+    List<Emp> select(Emp emp);
 }

@@ -27,6 +27,17 @@
 				<value>classpath*:com/qdu/mapper/*.xml</value>
 			</array>
 		</property>
+		<property name="plugins">
+			<array>
+				<bean class="com.github.pagehelper.PageHelper">
+					<property name="properties" >
+						<props>
+							<prop key="dialect">mysql</prop>
+						</props>
+					</property>
+				</bean>
+			</array>
+		</property>
 		<property name="typeAliasesPackage" value="com.qdu.bean"></property>
 	</bean>	
 	

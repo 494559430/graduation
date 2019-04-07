@@ -7,21 +7,25 @@
     <result column="idcard" property="idcard" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="INTEGER" />
     <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="loc" property="loc" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="hiredate" property="hiredate" jdbcType="VARCHAR" />
     <result column="sal" property="sal" jdbcType="VARCHAR" />
     <result column="leavedate" property="leavedate" jdbcType="VARCHAR" />
     <result column="jobId" property="jobid" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="jobName" property="jobName" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    empid, empname, idcard, sex, email, phone, hiredate, sal, leavedate, jobId, state
+    empid, empname, idcard, sex, email, loc, phone, hiredate, sal, leavedate, jobId, 
+    state
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
-    <include refid="Base_Column_List" />
-    from emp
-    where empid = #{empid,jdbcType=INTEGER}
+    empid, empname, idcard, sex, email, loc, phone, hiredate, sal, leavedate, e.jobId,
+    state, j.jobName
+    from emp e left join job j on e.jobid = j.jobId
+    where  empid = #{empid,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from emp
@@ -29,11 +33,11 @@
   </delete>
   <insert id="insert" parameterType="com.qdu.bean.Emp" >
     insert into emp (empid, empname, idcard, 
-      sex, email, phone, 
+      sex, email, loc, phone, 
       hiredate, sal, leavedate, 
       jobId, state)
     values (#{empid,jdbcType=INTEGER}, #{empname,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
       #{hiredate,jdbcType=VARCHAR}, #{sal,jdbcType=VARCHAR}, #{leavedate,jdbcType=VARCHAR}, 
       #{jobid,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER})
   </insert>
@@ -54,6 +58,9 @@
       </if>
       <if test="email != null" >
         email,
+      </if>
+      <if test="loc != null" >
+        loc,
       </if>
       <if test="phone != null" >
         phone,
@@ -90,6 +97,9 @@
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
       </if>
+      <if test="loc != null" >
+        #{loc,jdbcType=VARCHAR},
+      </if>
       <if test="phone != null" >
         #{phone,jdbcType=VARCHAR},
       </if>
@@ -125,6 +135,9 @@
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
       </if>
+      <if test="loc != null" >
+        loc = #{loc,jdbcType=VARCHAR},
+      </if>
       <if test="phone != null" >
         phone = #{phone,jdbcType=VARCHAR},
       </if>
@@ -152,6 +165,7 @@
       idcard = #{idcard,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=INTEGER},
       email = #{email,jdbcType=VARCHAR},
+      loc = #{loc,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
       hiredate = #{hiredate,jdbcType=VARCHAR},
       sal = #{sal,jdbcType=VARCHAR},
@@ -160,4 +174,13 @@
       state = #{state,jdbcType=INTEGER}
     where empid = #{empid,jdbcType=INTEGER}
   </update>
+
+  <select id="select" resultMap="BaseResultMap" parameterType="emp" >
+    select
+   empid, empname, idcard, sex, email, loc, phone, hiredate, sal, leavedate, e.jobId,
+    state, j.jobName
+    from emp e left join job j on e.jobid = j.jobId
+    where e.jobid in (select jobId from job where shopid='1')
+  </select>
+
 </mapper>
