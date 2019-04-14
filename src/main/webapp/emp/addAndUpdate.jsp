@@ -75,7 +75,7 @@
 			<td>
 				<input id="cc" name="jobid" class="easyui-combobox"
 					   data-options="required:true,width:180,editable:false,valueField:'id',textField:'text',
-						url:'${pageContext.request.contextPath }/emp/getJob',method:'post',
+						url:'${pageContext.request.contextPath }/emp/getJob?shopid=1',method:'post',
 						animate:true,value:'${e.jobid}'"
 					/>
 			</td>

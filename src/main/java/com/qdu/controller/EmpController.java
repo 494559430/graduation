@@ -44,7 +44,7 @@ public class EmpController {
 
     @RequestMapping(value = "/getJob")
     @ResponseBody
-    public List<ComboNode> getJob(int shopid){
+    public List<ComboNode> getJob(Integer shopid){
 
         return service.getJob(1);
     }

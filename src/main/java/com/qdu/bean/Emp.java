@@ -1,5 +1,7 @@
 package com.qdu.bean;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Emp {
     private Integer empid;
 
@@ -16,6 +18,10 @@ public class Emp {
     private String phone;
 
     private String hiredate;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private String hiredateStart;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private String hiredateEnd;
 
     private String sal;
 
@@ -127,5 +133,21 @@ public class Emp {
 
     public void setJobName(String jobName) {
         this.jobName = jobName;
+    }
+
+    public String getHiredateStart() {
+        return hiredateStart;
+    }
+
+    public void setHiredateStart(String hiredateStart) {
+        this.hiredateStart = hiredateStart;
+    }
+
+    public String getHiredateEnd() {
+        return hiredateEnd;
+    }
+
+    public void setHiredateEnd(String hiredateEnd) {
+        this.hiredateEnd = hiredateEnd;
     }
 }

@@ -63,7 +63,7 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	@Override
-	public List<ComboNode> getJob(int shopid) {
+	public List<ComboNode> getJob(Integer shopid) {
 		List<Job> jobList =mapper2.selectByShopid(shopid);
 		List<ComboNode> list= new ArrayList<>();
 		for (Job job :jobList) {

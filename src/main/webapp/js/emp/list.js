@@ -56,17 +56,18 @@ var eventobj = {
             width: 400,
             height: 380,
             closed: false,
-            href: contextPath+"/pages/emp/query.jsp",
+            href: contextPath+"/emp/query.jsp",
             modal: true,
             buttons:[{
                 text:"查询",
                 iconCls:'icon-search',
                 handler:function () {
-                    $('#dg').datagrid("load",{
-                        rnum:$("#ename").textbox("getValue"),
-                        startprice:$("#startprice").textbox("getValue"),
-                        endprice:$("#endprice").textbox("getValue")
-                    })
+                    $("#dg").datagrid('load',{
+                        empname:$("#empname").textbox("getValue"),
+                        jobid:$("#jobId").combotree("getValue"),
+                        hiredateStart:$("#hiredateStart").datebox("getValue"),
+                        hiredateEnd:$("#hiredateEnd").datebox("getValue")
+                    });
                     $("#emp-dialog").dialog("close");
                     $("#emp-dialog").dialog("clear");
                 }

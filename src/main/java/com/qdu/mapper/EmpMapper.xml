@@ -180,7 +180,20 @@
    empid, empname, idcard, sex, email, loc, phone, hiredate, sal, leavedate, e.jobId,
     state, j.jobName
     from emp e left join job j on e.jobid = j.jobId
-    where e.jobid in (select jobId from job where shopid='1')
+    <where>
+      <if test="empname!=null and empname !=''">
+        empname like '%${empname}%'
+      </if>
+      <if test="jobid!=null and jobid !=''">
+        and e.jobId=#{jobid}
+      </if>
+      <if test="hiredateStart!=null and hiredateStart !=''">
+        and hiredate>=#{hiredateStart}
+      </if>
+      <if test="hiredateEnd!=null and hiredateEnd !=''">
+        and hiredate <![CDATA[<=]]> #{hiredateEnd}
+      </if>
+    </where>
   </select>
 
 </mapper>

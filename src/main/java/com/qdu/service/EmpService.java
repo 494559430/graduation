@@ -16,6 +16,6 @@ public interface EmpService {
 	Map<String, Object> query(Integer page, Integer rows, Emp emp);
 	void update(Emp emp);
 	void addJob(Job job);
-	List<ComboNode> getJob(int shopid);
+	List<ComboNode> getJob(Integer shopid);
 
 }
