@@ -22,18 +22,18 @@ import org.springframework.stereotype.Service;
 public class EmpServiceImpl implements EmpService {
 
 	@Resource
-	EmpMapper mapper1;
+	private EmpMapper mapper1;
 	@Resource
-	JobMapper mapper2;
+	private JobMapper mapper2;
 
 
 	@Override
-	public void doAdd(Emp emp) {
+	public int doAdd(Emp emp) {
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		emp.setHiredate(sdf.format(date));
 		emp.setState(2);//默认为普通店员
-		mapper1.insert(emp);
+		return mapper1.insert(emp);
 	}
 
 	@Override
@@ -53,13 +53,13 @@ public class EmpServiceImpl implements EmpService {
 	}
 
 	@Override
-	public void update(Emp emp) {
-		mapper1.updateByPrimaryKey(emp);
+	public int update(Emp emp) {
+		return mapper1.updateByPrimaryKey(emp);
 	}
 
 	@Override
-	public void addJob(Job job) {
-		mapper2.insert(job);
+	public int addJob(Job job) {
+		return mapper2.insert(job);
 	}
 
 	@Override

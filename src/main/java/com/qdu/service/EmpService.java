@@ -11,11 +11,11 @@ import java.util.Map;
 
 public interface EmpService {
 	
-	void doAdd(Emp emp);
+	int doAdd(Emp emp);
 	Emp getEmp(int empid);
 	Map<String, Object> query(Integer page, Integer rows, Emp emp);
-	void update(Emp emp);
-	void addJob(Job job);
+	int update(Emp emp);
+	int addJob(Job job);
 	List<ComboNode> getJob(Integer shopid);
 
 }

@@ -31,15 +31,17 @@ public class EmpController {
     @ResponseBody
     public ResultMsg addJob(Job job){
         job.setShopid(1);
-        service.addJob(job);
-        return new ResultMsg(200,"添加职位成功");
+        if(service.addJob(job)>0)
+            return new ResultMsg(200,"添加职位成功");
+        return new ResultMsg(500,"添加职位失败");
     }
     @RequestMapping(value = "/addEmp")
     @ResponseBody
     public ResultMsg addEmp(Emp e){
 
-        service.doAdd(e);
+        if(service.doAdd(e)>0)
         return new ResultMsg(200,"添加员工成功");
+        return new ResultMsg(500,"添加员工失败");
     }
 
     @RequestMapping(value = "/getJob")
@@ -60,8 +62,9 @@ public class EmpController {
     @RequestMapping(value = "/update")
     @ResponseBody
     public ResultMsg update(Emp e){
-        service.update(e);
+        if(service.update(e)>0)
         return new ResultMsg(200,"更新员工信息成功!!");
+        return new ResultMsg(500,"更新员工信息失败!!");
     }
     @RequestMapping(value = "/emp")
     public String emp(){
