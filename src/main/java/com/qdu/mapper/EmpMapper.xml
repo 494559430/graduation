@@ -6,6 +6,7 @@
     <result column="empname" property="empname" jdbcType="VARCHAR" />
     <result column="idcard" property="idcard" jdbcType="VARCHAR" />
     <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
     <result column="email" property="email" jdbcType="VARCHAR" />
     <result column="loc" property="loc" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
@@ -22,7 +23,7 @@
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
-    empid, empname, idcard, sex, email, loc, phone, hiredate, sal, leavedate, e.jobId,
+    empid, empname, idcard, sex,age, email, loc, phone, hiredate, sal, leavedate, e.jobId,
     state, j.jobName
     from emp e left join job j on e.jobid = j.jobId
     where  empid = #{empid,jdbcType=INTEGER}
@@ -33,11 +34,11 @@
   </delete>
   <insert id="insert" parameterType="com.qdu.bean.Emp" >
     insert into emp (empid, empname, idcard, 
-      sex, email, loc, phone, 
+      sex,age, email, loc, phone,
       hiredate, sal, leavedate, 
       jobId, state)
     values (#{empid,jdbcType=INTEGER}, #{empname,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{sex,jdbcType=INTEGER},#{age,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR}, #{loc,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR},
       #{hiredate,jdbcType=VARCHAR}, #{sal,jdbcType=VARCHAR}, #{leavedate,jdbcType=VARCHAR}, 
       #{jobid,jdbcType=VARCHAR}, #{state,jdbcType=INTEGER})
   </insert>
@@ -55,6 +56,9 @@
       </if>
       <if test="sex != null" >
         sex,
+      </if>
+      <if test="age != null" >
+        age,
       </if>
       <if test="email != null" >
         email,
@@ -94,6 +98,9 @@
       <if test="sex != null" >
         #{sex,jdbcType=INTEGER},
       </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
       <if test="email != null" >
         #{email,jdbcType=VARCHAR},
       </if>
@@ -132,6 +139,9 @@
       <if test="sex != null" >
         sex = #{sex,jdbcType=INTEGER},
       </if>
+      <if test="age != null" >
+        age = #{sex,jdbcType=INTEGER},
+      </if>
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},
       </if>
@@ -164,6 +174,7 @@
     set empname = #{empname,jdbcType=VARCHAR},
       idcard = #{idcard,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER},
       email = #{email,jdbcType=VARCHAR},
       loc = #{loc,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
@@ -177,7 +188,7 @@
 
   <select id="select" resultMap="BaseResultMap" parameterType="emp" >
     select
-   empid, empname, idcard, sex, email, loc, phone, hiredate, sal, leavedate, e.jobId,
+   empid, empname, idcard, sex, email, loc, phone, hiredate, sal, leavedate, e.jobId,age
     state, j.jobName
     from emp e left join job j on e.jobid = j.jobId
     <where>

@@ -128,9 +128,9 @@ var eventobj = {
             return ;
         }*/
         $("#emp-dialog").dialog({
-                title: '修改',
+                title: '员工详细信息',
                 width: 400,
-                height: 480,
+                height: 550,
                 closed: false,
                 href: contextPath+"/emp/addAndUpdate?id="+empid,
                 modal: true,

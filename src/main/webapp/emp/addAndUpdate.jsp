@@ -27,6 +27,12 @@
 			</td>
 		</tr>
 		<tr>
+			<td>年龄:</td>
+			<td>
+				<input name="age" class="easyui-textbox" data-options="required:true,width:180" value="${e.age }"/>
+			</td>
+		</tr>
+		<tr>
 			<td>身份证号:</td>
 			<td>
 				<input name="idcard" class="easyui-textbox" data-options="required:true,width:180" value="${e.idcard }"/>

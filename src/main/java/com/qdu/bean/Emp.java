@@ -10,7 +10,7 @@ public class Emp {
     private String idcard;
 
     private Integer sex;
-
+    private Integer age;
     private String email;
 
     private String loc;
@@ -61,6 +61,14 @@ public class Emp {
 
     public void setSex(Integer sex) {
         this.sex = sex;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public String getEmail() {
