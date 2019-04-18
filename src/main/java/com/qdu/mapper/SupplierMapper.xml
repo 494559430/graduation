@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qdu.mapper.SupplierMapper" >
+  <resultMap id="BaseResultMap" type="com.qdu.bean.Supplier" >
+    <id column="supplierId" property="supplierid" jdbcType="INTEGER" />
+    <result column="supplierName" property="suppliername" jdbcType="VARCHAR" />
+    <result column="representative" property="representative" jdbcType="VARCHAR" />
+    <result column="supplierEmail" property="supplieremail" jdbcType="VARCHAR" />
+    <result column="supplierPhone" property="supplierphone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    supplierId, supplierName, representative, supplierEmail, supplierPhone
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from supplier
+    where supplierId = #{supplierid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from supplier
+    where supplierId = #{supplierid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qdu.bean.Supplier" >
+    insert into supplier (supplierId, supplierName, representative, 
+      supplierEmail, supplierPhone)
+    values (#{supplierid,jdbcType=INTEGER}, #{suppliername,jdbcType=VARCHAR}, #{representative,jdbcType=VARCHAR}, 
+      #{supplieremail,jdbcType=VARCHAR}, #{supplierphone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qdu.bean.Supplier" >
+    insert into supplier
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="supplierid != null" >
+        supplierId,
+      </if>
+      <if test="suppliername != null" >
+        supplierName,
+      </if>
+      <if test="representative != null" >
+        representative,
+      </if>
+      <if test="supplieremail != null" >
+        supplierEmail,
+      </if>
+      <if test="supplierphone != null" >
+        supplierPhone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="supplierid != null" >
+        #{supplierid,jdbcType=INTEGER},
+      </if>
+      <if test="suppliername != null" >
+        #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="representative != null" >
+        #{representative,jdbcType=VARCHAR},
+      </if>
+      <if test="supplieremail != null" >
+        #{supplieremail,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierphone != null" >
+        #{supplierphone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qdu.bean.Supplier" >
+    update supplier
+    <set >
+      <if test="suppliername != null" >
+        supplierName = #{suppliername,jdbcType=VARCHAR},
+      </if>
+      <if test="representative != null" >
+        representative = #{representative,jdbcType=VARCHAR},
+      </if>
+      <if test="supplieremail != null" >
+        supplierEmail = #{supplieremail,jdbcType=VARCHAR},
+      </if>
+      <if test="supplierphone != null" >
+        supplierPhone = #{supplierphone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where supplierId = #{supplierid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qdu.bean.Supplier" >
+    update supplier
+    set supplierName = #{suppliername,jdbcType=VARCHAR},
+      representative = #{representative,jdbcType=VARCHAR},
+      supplierEmail = #{supplieremail,jdbcType=VARCHAR},
+      supplierPhone = #{supplierphone,jdbcType=VARCHAR}
+    where supplierId = #{supplierid,jdbcType=INTEGER}
+  </update>
+  <select id="select" resultMap="BaseResultMap" parameterType="com.qdu.bean.Supplier" >
+    select
+    <include refid="Base_Column_List" />
+    from supplier
+  </select>
+</mapper>
