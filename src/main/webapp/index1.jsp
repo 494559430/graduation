@@ -33,8 +33,6 @@
             <div title="供应商管理" data-options="iconCls:'icon-reload'" style="padding:10px;">
                 <ul class="easyui-tree">
                     <li><a class="opts" title="供应商查看" url="/supplier/supplier"><span style="display: block;width: 180px">供应商查看</span></a></li>
-                    <li><a class="opts" title="员工出租" url="/turn/tolist2"><span style="display: block;width: 180px">房间出租</span></a></li>
-
                 </ul>
             </div>
 

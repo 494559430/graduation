@@ -185,10 +185,15 @@
       state = #{state,jdbcType=INTEGER}
     where empid = #{empid,jdbcType=INTEGER}
   </update>
-
+  <update id="fire" parameterType="emp" >
+    update emp
+    set state = 1,
+    leavedate = #{leavedate,jdbcType=VARCHAR}
+    where empid = #{empid,jdbcType=INTEGER}
+  </update>
   <select id="select" resultMap="BaseResultMap" parameterType="emp" >
     select
-   empid, empname, idcard, sex, email, loc, phone, hiredate, sal, leavedate, e.jobId,age
+   empid, empname, idcard, sex, email, loc, phone, hiredate, sal, leavedate, e.jobId,age,
     state, j.jobName
     from emp e left join job j on e.jobid = j.jobId
     <where>
@@ -203,6 +208,9 @@
       </if>
       <if test="hiredateEnd!=null and hiredateEnd !=''">
         and hiredate <![CDATA[<=]]> #{hiredateEnd}
+      </if>
+      <if test="state!=null">
+        and state = #{state,jdbcType=INTEGER}
       </if>
     </where>
   </select>

@@ -19,7 +19,20 @@
 					"/>
 				</td>
 			</tr>
-			
+			<tr>
+				<td>状态:</td>
+				<td>
+					<input id="state" name="state" class="easyui-combobox" data-options="width:180,
+					method:'post',animate:true,valueField:'id',textField:'text',
+					data:[{
+						text:'已离职',
+						id:'1'
+					},{
+						text:'店员',
+						id:'2'
+					}]"/>
+				</td>
+			</tr>
 			<tr>
 				<td colspan="2">雇佣时间:</td>
 
@@ -33,7 +46,7 @@
 					<input id="hiredateEnd" name="hiredateEnd" class="easyui-datebox" data-options="width:140"/>
 				</td>
 			</tr>
-			
+
 		</table>
 
 </body>

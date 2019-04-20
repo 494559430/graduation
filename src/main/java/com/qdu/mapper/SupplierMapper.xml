@@ -94,5 +94,13 @@
     select
     <include refid="Base_Column_List" />
     from supplier
+    <where>
+      <if test="suppliername!=null and suppliername !=''">
+        suppliername like '%${suppliername}%'
+      </if>
+      <if test="representative!=null and representative !=''">
+        and representative like '%${representative}%'
+      </if>
+    </where>
   </select>
 </mapper>

@@ -71,4 +71,13 @@ public class EmpServiceImpl implements EmpService {
 		}
 		return list;
 	}
+
+	@Override
+	public int fire(Integer empid) {
+		Emp emp = new Emp();
+		emp.setEmpid(empid);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		emp.setLeavedate(sdf.format(new Date()));
+		return mapper1.fire(emp);
+	}
 }

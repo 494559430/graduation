@@ -23,9 +23,9 @@ public class SupplierController {
 
 
 
-    @RequestMapping(value = "/addEmp")
+    @RequestMapping(value = "/addSupplier")
     @ResponseBody
-    public ResultMsg addEmp(Supplier s){
+    public ResultMsg addSupplier(Supplier s){
 
         if(service.doAdd(s)>0)
         return new ResultMsg(200,"添加供应商成功");
@@ -42,7 +42,7 @@ public class SupplierController {
             Supplier s =service.getSupplier(id);
             m.addAttribute("s", s);
         }
-        return "/emp/addAndUpdate";
+        return "/supplier/addAndUpdate";
     }
     @RequestMapping(value = "/update")
     @ResponseBody

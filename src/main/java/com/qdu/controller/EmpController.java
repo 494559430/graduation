@@ -43,7 +43,14 @@ public class EmpController {
         return new ResultMsg(200,"添加员工成功");
         return new ResultMsg(500,"添加员工失败");
     }
+    @RequestMapping(value = "/del")
+    @ResponseBody
+    public ResultMsg del(Integer empid){
 
+        if(service.fire(empid)==1)
+            return new ResultMsg(200,"解雇员工成功");
+        return new ResultMsg(500,"解雇员工失败");
+    }
     @RequestMapping(value = "/getJob")
     @ResponseBody
     public List<ComboNode> getJob(Integer shopid){

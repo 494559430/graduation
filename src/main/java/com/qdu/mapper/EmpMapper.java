@@ -20,4 +20,6 @@ public interface EmpMapper {
     int updateByPrimaryKey(Emp record);
 
     List<Emp> select(Emp emp);
+
+    int fire(Emp emp);
 }

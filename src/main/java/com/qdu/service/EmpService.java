@@ -18,4 +18,5 @@ public interface EmpService {
 	int addJob(Job job);
 	List<ComboNode> getJob(Integer shopid);
 
+	int fire(Integer empid);
 }

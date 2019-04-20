@@ -11,7 +11,7 @@ create table emp(
     sal varchar(32),
     leavedate varchar(32),
     jobId VARCHAR(32),
-    state int #0代表离职1为店长2为普通店员
+    state int #1代表离职2为普通店员3为店长
 );
 create table job(
     jobId int PRIMARY key auto_increment,

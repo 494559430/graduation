@@ -26,10 +26,10 @@ $(function () {
             {title: "职位", field: "jobName",align:"center",width:150},
             {title: "薪资", field: "sal",align:"center",width:150},
             {title: "入职时间", field: "hiredate",align:"center",width:250},
-            {title: "状态", field: "status",align:"center",width:75,formatter:function (value,row,index) {
-                if (value==0){
+            {title: "状态", field: "state",align:"center",width:75,formatter:function (value,row,index) {
+                if (value=='1'){
                     return "离职"
-                }else if (value==1){
+                }else if (value=='3'){
                     return "店长";
                 }else{
                     return "店员";
@@ -37,7 +37,7 @@ $(function () {
 
             }},
             {title: "操作", field: "do" ,align:"center",width:175,formatter:function (value,row,index) {
-                return "<button onclick='eventobj.update(\""+row.empid+"\")'>修改</button><button onclick='eventobj.remove2(\""+row.rid+"\")'>解雇</button>";
+                return "<button onclick='eventobj.update(\""+row.empid+"\")'>修改</button><button onclick='eventobj.remove2(\""+row.empid+"\")'>解雇</button>";
             }}
         ]],
         toolbar: '#dg-toolbar'
@@ -64,7 +64,8 @@ var eventobj = {
                 handler:function () {
                     $("#dg").datagrid('load',{
                         empname:$("#empname").textbox("getValue"),
-                        jobid:$("#jobId").combotree("getValue"),
+                        jobid:$("#jobId").combobox("getValue"),
+                        state:$("#state").combobox("getValue"),
                         hiredateStart:$("#hiredateStart").datebox("getValue"),
                         hiredateEnd:$("#hiredateEnd").datebox("getValue")
                     });
@@ -206,47 +207,12 @@ var eventobj = {
 
         });
     },
-    remove:function () {
-        var s = $('#dg').datagrid("getSelections");
-        if (s.length ==0){
-            $.messager.show({
-                title:'提示',
-                msg:"请选中至少一条记录",
-                timeout:5000,
-                showType:'slide'
-            });
-            return ;
-        }
-        $.messager.confirm('确认','您确认想要删除记录吗？',function(r){
-            if (r){
-                var bids = $.map(s,function (a) {
-                    return a.bid;
-                })
-                $.ajax({
-                    url:contextPath+"/bike/del",
-                    contentType:'application/json',
-                    data:JSON.stringify(bids),
-                    type:"post",
-                    success:function (msg) {
+    remove2:function (empid) {
 
-                        $.messager.show({
-                            title:'我的消息',
-                            msg:msg.msg,
-                            timeout:5000,
-                            showType:'slide'
-                        });
-                        $('#dg').datagrid("reload");
-                    }
-                })
-            }
-        });
-    },
-    remove2:function (rid) {
-
-        $.messager.confirm('确认','您确认想要删除记录吗？',function(r){
+        $.messager.confirm('确认','您确认想要解雇员工编号为的'+empid+'员工吗？',function(r){
             if (r){
                 $.ajax({
-                    url:contextPath+"/room/del?id="+rid,
+                    url:contextPath+"/emp/del?empid="+empid,
                     contentType:'application/json',
                     type:"post",
                     success:function (msg) {
