@@ -16,10 +16,10 @@
 <body>
 
 <div  class="easyui-layout" data-options="fit:true">
-    <div data-options="region:'north'" style="height:100px;">
-        <%--<div style="float: right;clear: both;line-height: 70px">--%>
-        <%--<h3><span>欢迎：${emp.ename}</span><spna><a href="javascript:void(0)" onclick="logout();">退出</a></spna><span><a href="javascript:void(0)" onclick="editPass()">修改密码</a></span></h3>--%>
-        <%--</div>--%>
+    <div data-options="region:'north'" style="height:150px;">
+      <div style="float: right;clear: both;line-height: 70px">
+       <%-- <h3><span>欢迎：${user.username}</span><spna><a href="javascript:void(0)" onclick="logout();">退出</a></spna><span><a href="javascript:void(0)" onclick="editPass()">修改密码</a></span></h3>--%>
+      </div>
     </div>
     <div data-options="region:'west',title:'导航'" style="width:250px;">
         <div id="aa" class="easyui-accordion" style="width:250px;height:300px;" data-options="fit:true,multiple:false">
@@ -41,7 +41,8 @@
         </div>
     </div>
     <div data-options="region:'center'" style="padding:5px;">
-        <div id="content" class="easyui-tabs" data-options="fit:true"></div>
+        <div id="content" class="easyui-tabs" data-options="fit:true">
+        </div>
     </div>
 </div>
 <div id="index-dialog">

@@ -52,6 +52,11 @@ create TABLE shopItem(
     by2 varchar(100)
 );
 
+create table user(
+    id int PRIMARY key auto_increment,
+    username varchar(32),
+    password varchar(32)
+);
 
 
 
