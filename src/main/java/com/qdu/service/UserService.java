@@ -5,4 +5,5 @@ import com.qdu.bean.User;
 
 public interface UserService {
 	int add(User user);
+	User login(User user);
 }

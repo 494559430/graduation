@@ -24,5 +24,7 @@
 	</bean>
 	
 	<mvc:resources location="/js/" mapping="/js/**"/>
-	
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/fonts/" mapping="/fonts/**"/>
+
 </beans>

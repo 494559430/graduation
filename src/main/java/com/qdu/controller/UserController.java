@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.qdu.bean.User;
 import com.qdu.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -31,5 +33,16 @@ public class UserController {
 			result.put("msg", e.getMessage());
 		}
 		return result;
+	}
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+
+	public String login(User u, HttpServletRequest request){
+		User user = service.login(u);
+		if (user!=null&&user.getUsername()!=null){
+			request.getSession().setAttribute("user",user);
+			return "index1";
+		}
+
+		return "login";
 	}
 }

@@ -9,5 +9,8 @@
 	<insert id="add" parameterType="com.qdu.bean.User" >
 	insert into user(<include refid="user-columns" />) values(#{id},#{username},#{password})
 	</insert>
-	
+	<select id="select" parameterType="com.qdu.bean.User" resultType="com.qdu.bean.User">
+		select <include refid="user-columns" /> FROM user
+		where username= #{username} and password =#{password}
+	</select>
 </mapper>
