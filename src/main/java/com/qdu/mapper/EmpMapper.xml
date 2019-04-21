@@ -139,8 +139,9 @@
       <if test="sex != null" >
         sex = #{sex,jdbcType=INTEGER},
       </if>
+      
       <if test="age != null" >
-        age = #{sex,jdbcType=INTEGER},
+        age = #{age,jdbcType=INTEGER},
       </if>
       <if test="email != null" >
         email = #{email,jdbcType=VARCHAR},

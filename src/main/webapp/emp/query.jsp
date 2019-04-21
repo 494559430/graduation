@@ -15,7 +15,7 @@
 				<td>员工职位:</td>
 				<td>
 					<input id="jobId" name="jobid" class="easyui-combobox" data-options="width:180,
-					url:'${pageContext.request.contextPath }/emp/getJob',method:'post',animate:true,valueField:'id',textField:'text'
+					url:'${pageContext.request.contextPath }/emp/getJob?shopid=${user.shopId}',method:'post',animate:true,valueField:'id',textField:'text'
 					"/>
 				</td>
 			</tr>

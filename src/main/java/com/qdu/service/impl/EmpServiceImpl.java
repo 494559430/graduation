@@ -54,7 +54,7 @@ public class EmpServiceImpl implements EmpService {
 
 	@Override
 	public int update(Emp emp) {
-		return mapper1.updateByPrimaryKey(emp);
+		return mapper1.updateByPrimaryKeySelective(emp);
 	}
 
 	@Override

@@ -55,7 +55,7 @@ public class EmpController {
     @ResponseBody
     public List<ComboNode> getJob(Integer shopid){
 
-        return service.getJob(1);
+        return service.getJob(shopid);
     }
 
     @RequestMapping(value = "/addAndUpdate")

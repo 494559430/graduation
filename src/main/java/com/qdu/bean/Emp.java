@@ -31,6 +31,8 @@ public class Emp {
     private String jobName;
     private Integer state;
 
+    private Integer shopid;
+
     public Integer getEmpid() {
         return empid;
     }
@@ -157,5 +159,13 @@ public class Emp {
 
     public void setHiredateEnd(String hiredateEnd) {
         this.hiredateEnd = hiredateEnd;
+    }
+
+    public Integer getShopid() {
+        return shopid;
+    }
+
+    public void setShopid(Integer shopid) {
+        this.shopid = shopid;
     }
 }
