@@ -37,10 +37,11 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
 	}
-	public User(Integer id, String username, String password) {
+	public User(Integer id, String username, String password,Integer shopId) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
+		this.shopId = shopId;
 	}
 	public User() {
 	}

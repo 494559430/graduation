@@ -30,6 +30,15 @@
 
                 </ul>
             </div>
+            <div title="商品管理" data-options="iconCls:'icon-reload'" style="padding:10px;">
+                <ul class="easyui-tree">
+                    <li><a class="opts" title="商品管理" url="/turn/toshopItem"><span style="display: block;width: 180px">商品管理</span></a></li>
+                   <%-- <li><a class="opts" title="添加商品" url="/turn/toshopItemAdd"><span style="display: block;width: 180px">添加商品</span></a></li>--%>
+                    <li><a class="opts" title="商品种类" url="/turn/toshopItemType"><span style="display: block;width: 180px">商品种类</span></a></li>
+
+
+                </ul>
+            </div>
             <div title="供应商管理" data-options="iconCls:'icon-reload'" style="padding:10px;">
                 <ul class="easyui-tree">
                     <li><a class="opts" title="供应商查看" url="/supplier/supplier"><span style="display: block;width: 180px">供应商查看</span></a></li>

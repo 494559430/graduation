@@ -7,7 +7,7 @@
 	</sql>
 
 	<insert id="add" parameterType="com.qdu.bean.User" >
-	insert into user(<include refid="user-columns" />) values(#{id},#{username},#{password})
+	insert into user(<include refid="user-columns" />) values(#{id},#{username},#{password},#{shopid})
 	</insert>
 	<select id="select" parameterType="com.qdu.bean.User" resultType="com.qdu.bean.User">
 		select <include refid="user-columns" /> FROM user

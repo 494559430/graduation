@@ -22,5 +22,19 @@ public class TurnController {
     }
 
 
+    @RequestMapping(value = "/toshopItemType")
+    public String toshopItemType(){
+        return "shopitem/shopItemType";
+    }
+
+    @RequestMapping(value = "/toshopItem")
+    public String toshopItem(){
+        return "shopitem/shopItem";
+    }
+
+    @RequestMapping(value = "/toshopItemAdd")
+    public String toshopItemAdd(){
+        return "shopitem/toshopItemAdd";
+    }
 
 }

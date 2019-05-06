@@ -20,4 +20,6 @@ public interface SupplierMapper {
     int updateByPrimaryKey(Supplier record);
 
     List<Supplier> select(Supplier supplier);
+
+    List<Supplier> getList();
 }

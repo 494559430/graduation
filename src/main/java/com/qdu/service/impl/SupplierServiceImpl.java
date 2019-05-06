@@ -45,4 +45,9 @@ public class SupplierServiceImpl implements SupplierService {
     public int update(Supplier supplier) {
         return mapper.updateByPrimaryKey(supplier);
     }
+
+    @Override
+    public List<Supplier> getList() {
+        return mapper.select(new Supplier());
+    }
 }

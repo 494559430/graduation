@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -59,4 +60,10 @@ public class SupplierController {
         return service.query(page, rows, supplier);
     }
 
+
+    @RequestMapping(value = "getsupplier")
+    @ResponseBody
+    public List<Supplier> getSupplier(){
+        return  service.getList();
+    }
 }
