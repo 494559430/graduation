@@ -17,8 +17,8 @@
 
 <div  class="easyui-layout" data-options="fit:true">
     <div data-options="region:'north'" style="height:150px;">
-      <div style="float: right;clear: both;line-height: 70px">
-       <%-- <h3><span>欢迎：${user.username}</span><spna><a href="javascript:void(0)" onclick="logout();">退出</a></spna><span><a href="javascript:void(0)" onclick="editPass()">修改密码</a></span></h3>--%>
+        <div class="navbar-header" style="padding-top:1px;padding-bottom:10px;height:20px;width:100%;background-color:rgb(149, 184, 231)">
+        <h3 style="align:right;"><span>欢迎,第${user.shopId}分店管理员${user.username}</span><spna><a href="javascript:void(0)" onclick="logout();">退出</a></spna></h3>
       </div>
     </div>
     <div data-options="region:'west',title:'导航'" style="width:250px;">
