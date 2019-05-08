@@ -34,12 +34,12 @@
 
             <form class="m-t" role="form" action="/user/login" method="post">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="用户名" required="required" name="username">
+                    <input type="text" class="form-control" placeholder="用户名" required="required" name="username" id="username">
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" placeholder="密码" required="required" name="password">
+                    <input type="password" class="form-control" placeholder="密码" required="required" name="password" id="password">
                 </div>
-                <button type="submit" class="btn btn-primary block full-width m-b">登 录</button>
+                <button type="button" class="btn btn-primary block full-width m-b" onclick="login()">登 录</button>
 
 
                 <p class="text-muted text-center">若无帐号请联系 兰博卢基尼
@@ -52,7 +52,35 @@
     <!-- 全局js -->
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+    <script>
+    function login() {
+        var username= $("#username").val();
+        var password= $("#password").val();
+        $.ajax({
+            type: "post",
+            url: "/user/login",
+//      data: "para="+para,  此处data可以为 a=1&b=2类型的字符串 或 json数据。
+            data: {"username":username,"password":password},
+            cache: false,
+            async : false,
+            dataType: "json",
+            success: function (data)
+            {
+                if("1"==data.code){
+                    alert(data.msg);
+                    window.location.href = "index1.jsp";
+                }else{
+                    alert(data.msg);
+                    return false;
+                }
+            },
+            error:function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("请求失败！");
+            }
+        });
+    }
 
+    </script>
 
 
 </body>

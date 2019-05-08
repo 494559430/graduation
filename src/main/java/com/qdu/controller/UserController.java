@@ -3,6 +3,7 @@ package com.qdu.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.qdu.utils.ResultMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,14 +36,14 @@ public class UserController {
 		return result;
 	}
 	@RequestMapping(value="/login",method=RequestMethod.POST)
-
-	public String login(User u, HttpServletRequest request){
+	@ResponseBody
+	public ResultMsg login(User u, HttpServletRequest request){
 		User user = service.login(u);
 		if (user!=null&&user.getUsername()!=null){
 			request.getSession().setAttribute("user",user);
-			return "index1";
+			return new ResultMsg(1,"登陆成功，请等待跳转。。。。");
 		}
 
-		return "login";
+		return new ResultMsg(0,"登录失败，帐号密码错误！");
 	}
 }
