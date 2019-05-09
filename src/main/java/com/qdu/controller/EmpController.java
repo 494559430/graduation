@@ -4,6 +4,7 @@ package com.qdu.controller;
 
 import com.qdu.bean.Emp;
 import com.qdu.bean.Job;
+import com.qdu.bean.User;
 import com.qdu.service.EmpService;
 import com.qdu.utils.ComboNode;
 import com.qdu.utils.ResultMsg;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -79,8 +81,9 @@ public class EmpController {
     }
     @RequestMapping(value="/list",method= RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> query(Integer page, Integer rows, Emp emp){
-
+    public Map<String,Object> query(Integer page, Integer rows, Emp emp,HttpSession session){
+        User u = (User) session.getAttribute("user");
+        emp.setShopid(u.getShopId());
         return service.query(page, rows, emp);
     }
 
