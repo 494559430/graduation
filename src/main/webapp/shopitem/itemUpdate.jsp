@@ -46,13 +46,7 @@
                     <textarea class="easyui-validatebox" name="descrip" id="descrip" cols="30" rows="10"  >${shopitemdescrip.descrip}</textarea>
                 </td>
             </tr>
-            <tr style="display: none">
-                <td>商品种类</td>
-                <td>
-                    <input  name="shopitemtype" id="shopitemtype" value="${shopitemdescrip.shopitemtype}" />
-                </td>
 
-            </tr>
             <tr style="display: none">
                 <td>供应商</td>
                 <td>
@@ -61,6 +55,21 @@
             </tr>
         </c:if>
         <c:if test="${user.shopId!=1}">
+            <tr>
+                <td>商品名称</td>
+                <td>${shopitemdescrip.shopitemname}</td>
+            </tr>
+            <tr>
+                <td>商品价格（元）</td>
+                <td> ${shopitemdescrip.price}</td>
+            </tr>
+            <tr>
+                <td>商品描述</td>
+                <td>
+                    ${shopitemdescrip.descrip}
+                </td>
+            </tr>
+
         </c:if>
         <tr>
             <td>商品库存</td>
@@ -71,11 +80,19 @@
         <tr>
             <td>是否上架</td>
             <td>
-                <select id="ifgrounding" name="ifgrounding" value="${shopitemdescrip.ifgrounding}">
+                <select id="ifgrounding" name="ifgrounding" >
                     <option value="0">是</option>
                     <option value="1">否</option>
                 </select>
+                    <input type="hidden" value="${shopitemdescrip.ifgrounding}" id="up"/>
             </td>
+            <script>
+                $(document).ready(function(){
+                    var x = document.getElementById("up").value;
+                    $("#ifgrounding").val(x);
+                });
+            </script>
+
         </tr>
     </table>
 </form>
