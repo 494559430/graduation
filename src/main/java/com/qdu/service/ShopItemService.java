@@ -1,6 +1,7 @@
 package com.qdu.service;
 
 import com.qdu.bean.ShopItem_Descript;
+import com.qdu.bean.Shopitem;
 import com.qdu.bean.Shopitemdescrip;
 
 import java.util.Map;
@@ -22,4 +23,10 @@ public interface ShopItemService
     int update(Shopitemdescrip shopitemdescrip);
 
     int add(Shopitemdescrip shopitemdescrip);
+
+    int add(Shopitem shopitem);
+
+    ShopItem_Descript getDetail2(Integer shopitemid,Integer shopid);
+
+    void updateShopItem(Shopitem shopitem);
 }

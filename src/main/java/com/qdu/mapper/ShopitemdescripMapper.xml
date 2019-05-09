@@ -32,6 +32,12 @@
     from shopitemdescrip
     where shopItemid = #{shopitemid,jdbcType=INTEGER}
   </select>
+  <select id="selectByPrimaryKey2" resultMap="BaseListResultMap" parameterType="java.lang.Integer" >
+    select
+    a.shopitemid,a.shopid,a.num,a.ifgrounding,b.shopItemname,b.price,b.supplierId,b.shopItemType,b.descrip
+    from shopitem a left JOIN shopitemdescrip b on a.shopItemid = b.shopItemid
+     where a.shopitemid = #{0} AND shopid =#{1}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from shopitemdescrip
     where shopItemid = #{shopitemid,jdbcType=INTEGER}
@@ -161,4 +167,5 @@
     </where>
     ORDER BY a.ifgrounding
   </select>
+
 </mapper>

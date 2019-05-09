@@ -12,4 +12,5 @@ public interface ShopitemMapper {
     int insertSelective(Shopitem record);
 
 
+    void updateShopItem(Shopitem shopitem);
 }

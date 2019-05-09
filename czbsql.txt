@@ -25,12 +25,7 @@ CREATE table supplier(
     supplierEmail VARCHAR(32),
     supplierPhone varchar(32)
 );
-create table shopItem_supplier(
-    shopItemId int,
-    supplierid int,
-    price varchar(32),
-    num int
-);
+
 
 create TABLE shopItemDescrip(
 	shopItemid int PRIMARY key auto_increment,
@@ -59,6 +54,60 @@ create table user(
 	shopId int
 );
 
+
+CREATE table SaleBill(
+		saleid int PRIMARY key auto_increment,
+		shopid int ,
+		itemid int,
+		itemtype int,
+		salenum int,
+		saleprice double,
+		saledate varchar(20)
+)
+
+CREATE TABLE `shopitem`  (
+  `shopItemid` int(11) NULL DEFAULT NULL,
+  `shopid` int(11) NULL DEFAULT NULL,
+  `num` int(11) NULL DEFAULT NULL,
+  `ifgrounding` int(11) NULL DEFAULT NULL,
+  `by1` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `by2` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+CREATE TABLE `shopitemdescrip`  (
+  `shopItemid` int(11) NOT NULL AUTO_INCREMENT,
+  `shopItemname` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `price` double NULL DEFAULT NULL,
+  `supplierId` int(11) NULL DEFAULT NULL,
+  `shopItemType` int(11) NULL DEFAULT NULL,
+  `descrip` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `by1` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `by2` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`shopItemid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+--商店编号 shopid
+--商店名字 shopname
+--商店地址 shopaddress
+--商店负责人 shopperson
+--商店联系方式 shopphone
+--商店状态 shopstate
+
+create table shop(
+	shopid int PRIMARY key auto_increment,
+	shopname varchar(20) ,
+	shopaddress varchar(100),
+	shopperson varchar(20),
+	shopphone	varchar(20),
+	shopstate varchar(2)
+)
+
+CREATE TABLE `shopitemtype`  (
+  `typeId` int(11) NOT NULL AUTO_INCREMENT,
+  `typeName` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `parentId` int(11) NULL DEFAULT NULL,
+  PRIMARY KEY (`typeId`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 
 

@@ -37,4 +37,20 @@ public class TurnController {
         return "shopitem/toshopItemAdd";
     }
 
+    @RequestMapping(value = "/tosalebill")
+    public String tosaleBill(){
+        return "shopitem/tosalebill";
+    }
+
+    @RequestMapping(value = "/toshop")
+    public String toShop(){
+        return "shop/toshop";
+    }
+
+    @RequestMapping(value = "/toshopAdd")
+    public String toshopAdd(){
+        return "shop/toshopAdd";
+    }
+
+
 }

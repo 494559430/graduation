@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qdu.mapper.ShopMapper" >
+  <resultMap id="BaseResultMap" type="com.qdu.bean.Shop" >
+    <id column="shopid" property="shopid" jdbcType="INTEGER" />
+    <result column="shopname" property="shopname" jdbcType="VARCHAR" />
+    <result column="shopaddress" property="shopaddress" jdbcType="VARCHAR" />
+    <result column="shopperson" property="shopperson" jdbcType="VARCHAR" />
+    <result column="shopphone" property="shopphone" jdbcType="VARCHAR" />
+    <result column="shopstate" property="shopstate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    shopid, shopname, shopaddress, shopperson, shopphone, shopstate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from shop
+    where shopid = #{shopid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from shop
+    where shopid = #{shopid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qdu.bean.Shop" >
+    insert into shop (shopid, shopname, shopaddress, 
+      shopperson, shopphone, shopstate
+      )
+    values (#{shopid,jdbcType=INTEGER}, #{shopname,jdbcType=VARCHAR}, #{shopaddress,jdbcType=VARCHAR}, 
+      #{shopperson,jdbcType=VARCHAR}, #{shopphone,jdbcType=VARCHAR}, #{shopstate,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qdu.bean.Shop" >
+    insert into shop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopid != null" >
+        shopid,
+      </if>
+      <if test="shopname != null" >
+        shopname,
+      </if>
+      <if test="shopaddress != null" >
+        shopaddress,
+      </if>
+      <if test="shopperson != null" >
+        shopperson,
+      </if>
+      <if test="shopphone != null" >
+        shopphone,
+      </if>
+      <if test="shopstate != null" >
+        shopstate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopid != null" >
+        #{shopid,jdbcType=INTEGER},
+      </if>
+      <if test="shopname != null" >
+        #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopaddress != null" >
+        #{shopaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shopperson != null" >
+        #{shopperson,jdbcType=VARCHAR},
+      </if>
+      <if test="shopphone != null" >
+        #{shopphone,jdbcType=VARCHAR},
+      </if>
+      <if test="shopstate != null" >
+        #{shopstate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qdu.bean.Shop" >
+    update shop
+    <set >
+      <if test="shopname != null" >
+        shopname = #{shopname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopaddress != null" >
+        shopaddress = #{shopaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shopperson != null" >
+        shopperson = #{shopperson,jdbcType=VARCHAR},
+      </if>
+      <if test="shopphone != null" >
+        shopphone = #{shopphone,jdbcType=VARCHAR},
+      </if>
+      <if test="shopstate != null" >
+        shopstate = #{shopstate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shopid = #{shopid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qdu.bean.Shop" >
+    update shop
+    set shopname = #{shopname,jdbcType=VARCHAR},
+      shopaddress = #{shopaddress,jdbcType=VARCHAR},
+      shopperson = #{shopperson,jdbcType=VARCHAR},
+      shopphone = #{shopphone,jdbcType=VARCHAR},
+      shopstate = #{shopstate,jdbcType=VARCHAR}
+    where shopid = #{shopid,jdbcType=INTEGER}
+  </update>
+  <select id="getList" resultMap="BaseResultMap" parameterType="com.qdu.bean.Shop" >
+    select
+    <include refid="Base_Column_List" />
+    from shop
+    <where>
+      <if test="shopname != null and shopname != ''" >
+        AND shopname like "%"#{shopname,jdbcType=VARCHAR}"%"
+      </if>
+      <if test="shopid != null" >
+        AND shopid = #{shopid,jdbcType=INTEGER}
+      </if>
+      <if test="shopaddress != null and shopaddress != ''" >
+        AND shopaddress like "%"#{shopaddress,jdbcType=VARCHAR}"%"
+      </if>
+    </where>
+  </select>
+</mapper>

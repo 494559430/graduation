@@ -1,9 +1,6 @@
 package com.qdu.controller;
 
-import com.qdu.bean.ShopItem_Descript;
-import com.qdu.bean.Shopitem;
-import com.qdu.bean.Shopitemdescrip;
-import com.qdu.bean.User;
+import com.qdu.bean.*;
 import com.qdu.service.ShopItemService;
 import com.qdu.utils.ResultMsg;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +33,11 @@ public class ShopItemController {
     @ResponseBody
     public Map<String ,Object> GetList(Integer page, Integer rows,ShopItem_Descript shopItem_descript,HttpServletRequest request){
     User user = (User) request.getSession().getAttribute("user");
-    shopItem_descript.setShopid(user.getShopId());
+    if (shopItem_descript.getShopid()!=null&&shopItem_descript.getShopid()!=0){
+
+    }else{
+        shopItem_descript.setShopid(user.getShopId());
+    }
     Map<String ,Object> map = shopItemService.getList(page,rows,shopItem_descript);
     return map;
     }
@@ -54,17 +55,26 @@ public class ShopItemController {
     }
 
     @RequestMapping(value = "/update")
-    public String update(Integer shopitemid, HttpServletRequest request) {
-        Shopitemdescrip shopitemdescrip = shopItemService.getDetail(shopitemid);
-        request.setAttribute("shopitemdescrip", shopitemdescrip);
+    public String update(Integer shopitemid,HttpServletRequest request) {
+        /*Shopitemdescrip shopitemdescrip = shopItemService.getDetail(shopitemid);*/
+        User user = (User) request.getSession().getAttribute("user");
+        ShopItem_Descript shopItem_descript = shopItemService.getDetail2(shopitemid,user.getShopId());
+        request.setAttribute("shopitemdescrip", shopItem_descript);
+        request.setAttribute("user",user);
         return "shopitem/itemUpdate";
     }
 
     @RequestMapping(value = "/update2")
     @ResponseBody
-    public ResultMsg update2(Shopitemdescrip shopitemdescrip, HttpServletRequest request) {
+    public ResultMsg update2(Shopitemdescrip shopitemdescrip,Integer num,Integer ifgrounding,Integer shopid , HttpServletRequest request) {
         ResultMsg msg = new ResultMsg();
         int i = shopItemService.update(shopitemdescrip);
+        Shopitem shopitem = new Shopitem();
+        shopitem.setIfgrounding(ifgrounding);
+        shopitem.setShopitemid(shopitemdescrip.getShopitemid());
+        shopitem.setShopid(shopid);
+        shopitem.setNum(num);
+        shopItemService.updateShopItem(shopitem);
         if(i>=1){
             msg.setCode(200);
             msg.setMsg("修改商品成功");
@@ -84,6 +94,15 @@ public class ShopItemController {
 
 
         //得到所有 shopid 添加到  shopitem 表
+        User user = (User) request.getSession().getAttribute("user");
+        int shopid = user.getShopId();
+        Shopitem shopitem = new Shopitem();
+        shopitem.setShopid(user.getShopId());
+        shopitem.setShopitemid(i);
+        //默认上架
+        shopitem.setIfgrounding(0);
+        shopitem.setNum(0);
+        shopItemService.add(shopitem);
 
         if(i>=1){
             msg.setCode(200);

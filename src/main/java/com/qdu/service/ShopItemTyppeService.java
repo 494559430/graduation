@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ShopItemTyppeService {
 
-    public List<Shopitemtype> getList();
+     List<Shopitemtype> getList();
 
     int insertParent(Shopitemtype shopitemtype);
 

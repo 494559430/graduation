@@ -3,6 +3,7 @@ package com.qdu.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qdu.bean.ShopItem_Descript;
+import com.qdu.bean.Shopitem;
 import com.qdu.bean.Shopitemdescrip;
 import com.qdu.mapper.ShopitemMapper;
 import com.qdu.mapper.ShopitemdescripMapper;
@@ -57,6 +58,21 @@ public class ShopItemServiceImpl  implements ShopItemService{
     @Override
     public int add(Shopitemdescrip shopitemdescrip) {
         return shopitemdescripMapper.insert(shopitemdescrip);
+    }
+
+    @Override
+    public int add(Shopitem shopitem) {
+        return shopitemMapper.insert(shopitem);
+    }
+
+    @Override
+    public ShopItem_Descript getDetail2(Integer shopitemid,Integer shopid) {
+        return shopitemdescripMapper.selectByPrimaryKey2(shopitemid,shopid);
+    }
+
+    @Override
+    public void updateShopItem(Shopitem shopitem) {
+        shopitemMapper.updateShopItem(shopitem);
     }
 
 

@@ -60,4 +60,7 @@
       </if>
     </trim>
   </insert>
+  <update id="updateShopItem" parameterType="com.qdu.bean.Shopitem">
+    UPDATE Shopitem set num =#{num} ,ifgrounding=#{ifgrounding} where shopid = #{shopid} AND shopitemid =#{shopitemid}
+  </update>
 </mapper>

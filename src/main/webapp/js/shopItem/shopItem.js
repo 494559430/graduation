@@ -30,6 +30,16 @@ $(function () {
     });
 })
 
+$.ajax({
+    type: "post",
+    url: contextPath + "/shop/getshopList",
+    dataType: "json",
+    success: function (data) {
+        for(var i in data){
+            $("#shopid")[0].innerHTML=$("#shopid")[0].innerHTML+"<option value='"+data[i].shopid+"'>"+data[i].shopname+"</option>"
+        }
+    }
+})
 
 var eventobj = {
     query:function (){
@@ -44,7 +54,7 @@ var eventobj = {
         $("#dg").datagrid('load',{
             shopitemid:$("#shopitemid").val(),
             shopitemname:$("#shopitemname").val(),
-
+            shopid:$("#shopid").val(),
         });
     },
     detail: function (shopitemid) {
@@ -138,8 +148,8 @@ var eventobj = {
                         success:function (msg) {
                             var data = $.parseJSON(msg);
                             if(data.code === 200){
-                                $("#emp-dialog").dialog("close");
-                                $("#emp-dialog").dialog("clear");
+                                $("#supplier-dialog").dialog("close");
+                                $("#supplier-dialog").dialog("clear");
                                 $('#dg').datagrid("reload");
 
                             }

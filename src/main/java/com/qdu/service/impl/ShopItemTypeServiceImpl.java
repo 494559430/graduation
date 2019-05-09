@@ -17,6 +17,7 @@ public class ShopItemTypeServiceImpl implements ShopItemTyppeService {
     @Resource
     private ShopitemtypeMapper mapper;
 
+    @Override
     public List<Shopitemtype> getList(){
         return mapper.getList();
     }

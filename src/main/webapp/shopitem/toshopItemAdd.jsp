@@ -16,7 +16,7 @@
     $.extend($.fn.validatebox.defaults.rules, {
         num: {
             validator: function(value, param){
-                var reg = new RegExp("^[0-9]*[.][0-9]*$");
+                var reg = new RegExp("^[0-9]*[.]*[0-9]*$");
                 return reg.test(value);
             },
             message: '请输入数字'

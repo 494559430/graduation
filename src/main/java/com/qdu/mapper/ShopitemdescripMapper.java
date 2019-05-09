@@ -22,4 +22,6 @@ public interface ShopitemdescripMapper {
     int updateByPrimaryKey(Shopitemdescrip record);
 
     List<ShopItem_Descript> getList(ShopItem_Descript shopitem_descript);
+
+    ShopItem_Descript selectByPrimaryKey2(Integer shopitemid,Integer shopid);
 }

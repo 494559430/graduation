@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qdu.mapper.SalebillMapper">
+  <resultMap id="BaseResultMap" type="com.qdu.bean.Salebill">
+    <id column="saleid" jdbcType="INTEGER" property="saleid" />
+    <result column="shopid" jdbcType="INTEGER" property="shopid" />
+    <result column="itemid" jdbcType="INTEGER" property="itemid" />
+    <result column="itemtype" jdbcType="INTEGER" property="itemtype" />
+    <result column="salenum" jdbcType="INTEGER" property="salenum" />
+    <result column="saleprice" jdbcType="DOUBLE" property="saleprice" />
+    <result column="saledate" jdbcType="VARCHAR" property="saledate" />
+  </resultMap>
+  <resultMap id="BillShowMap" type="com.qdu.bean.SalebillShow">
+    <result column="salenum" jdbcType="VARCHAR" property="salenum" />
+    <result column="sum" jdbcType="DOUBLE" property="sum" />
+    <result column="typename" jdbcType="VARCHAR" property="typename" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="saledate" jdbcType="VARCHAR" property="saledate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    saleid, shopid, itemid, itemtype, salenum, saleprice, saledate
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from salebill
+    where saleid = #{saleid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from salebill
+    where saleid = #{saleid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qdu.bean.Salebill">
+    insert into salebill (saleid, shopid, itemid, 
+      itemtype, salenum, saleprice, 
+      saledate)
+    values (#{saleid,jdbcType=INTEGER}, #{shopid,jdbcType=INTEGER}, #{itemid,jdbcType=INTEGER}, 
+      #{itemtype,jdbcType=INTEGER}, #{salenum,jdbcType=INTEGER}, #{saleprice,jdbcType=DOUBLE}, 
+      #{saledate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qdu.bean.Salebill">
+    insert into salebill
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="saleid != null">
+        saleid,
+      </if>
+      <if test="shopid != null">
+        shopid,
+      </if>
+      <if test="itemid != null">
+        itemid,
+      </if>
+      <if test="itemtype != null">
+        itemtype,
+      </if>
+      <if test="salenum != null">
+        salenum,
+      </if>
+      <if test="saleprice != null">
+        saleprice,
+      </if>
+      <if test="saledate != null">
+        saledate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="saleid != null">
+        #{saleid,jdbcType=INTEGER},
+      </if>
+      <if test="shopid != null">
+        #{shopid,jdbcType=INTEGER},
+      </if>
+      <if test="itemid != null">
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="itemtype != null">
+        #{itemtype,jdbcType=INTEGER},
+      </if>
+      <if test="salenum != null">
+        #{salenum,jdbcType=INTEGER},
+      </if>
+      <if test="saleprice != null">
+        #{saleprice,jdbcType=DOUBLE},
+      </if>
+      <if test="saledate != null">
+        #{saledate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qdu.bean.Salebill">
+    update salebill
+    <set>
+      <if test="shopid != null">
+        shopid = #{shopid,jdbcType=INTEGER},
+      </if>
+      <if test="itemid != null">
+        itemid = #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="itemtype != null">
+        itemtype = #{itemtype,jdbcType=INTEGER},
+      </if>
+      <if test="salenum != null">
+        salenum = #{salenum,jdbcType=INTEGER},
+      </if>
+      <if test="saleprice != null">
+        saleprice = #{saleprice,jdbcType=DOUBLE},
+      </if>
+      <if test="saledate != null">
+        saledate = #{saledate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where saleid = #{saleid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qdu.bean.Salebill">
+    update salebill
+    set shopid = #{shopid,jdbcType=INTEGER},
+      itemid = #{itemid,jdbcType=INTEGER},
+      itemtype = #{itemtype,jdbcType=INTEGER},
+      salenum = #{salenum,jdbcType=INTEGER},
+      saleprice = #{saleprice,jdbcType=DOUBLE},
+      saledate = #{saledate,jdbcType=VARCHAR}
+    where saleid = #{saleid,jdbcType=INTEGER}
+  </update>
+  <select id="getbillBytype" parameterType="java.lang.Integer" resultMap="BillShowMap">
+    select sum(salenum) salenum,sum(salenum*saleprice) sum,(select a.typename from shopitemtype a inner join shopitemtype b on a.typeid = b.parentId where a.typeid!=b.typeid and b.typeId = itemtype) typename
+    from salebill  where itemtype  in (select typeid from shopitemtype where typeid !=parentid) and shopid=#{shopid,jdbcType=INTEGER}  GROUP BY shopid,(select a.typename from shopitemtype a inner join shopitemtype b on a.typeid = b.parentId where a.typeid!=b.typeid and b.typeId = itemtype)
+  </select>
+  <select id="getbillByDate" parameterType="hashmap" resultMap="BillShowMap">
+    select substring_index(saledate,'-',2) saledate, sum(salenum) salenum,sum(salenum*saleprice) sum,(select shopitemname from shopitemdescrip where shopitemid = itemid) name
+    from salebill  where itemtype  in (select typeid from shopitemtype where typeid !=parentid) and shopid=#{shopid,jdbcType=INTEGER} and saledate >=#{begindate,jdbcType=VARCHAR } AND saledate &lt;=#{enddate,jdbcType=VARCHAR } GROUP BY substring_index(saledate,'-',2)
+
+  </select>
+</mapper>
