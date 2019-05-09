@@ -60,6 +60,11 @@
     </div>
     <div data-options="region:'south'" style="padding:2px;">
             <span>欢迎,${user.username}</span><spna>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="logout();">退出</a></spna>
+    <script>
+        function logout() {
+            window.location.replace(contextPath+"/user/logout");
+        }
+    </script>
     </div>
 </div>
 <div id="index-dialog">

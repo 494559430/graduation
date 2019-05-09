@@ -42,9 +42,7 @@ function tabs(option) {
 
 }
 
-// function logout() {
-//     window.location.replace(contextPath+"/login/logout");
-// }
+
 
 
 // function editPass(){

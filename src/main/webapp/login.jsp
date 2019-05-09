@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <%@include file="/easyui/include.jsp"%>
 
     <title>QDU超市后台管理登录</title>
 
@@ -68,7 +68,7 @@
             {
                 if("1"==data.code){
                     alert(data.msg);
-                    window.location.href = "index1.jsp";
+                    window.location.replace(contextPath+"/index1.jsp");
                 }else{
                     alert(data.msg);
                     return false;

@@ -14,6 +14,7 @@ import com.qdu.bean.User;
 import com.qdu.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/user")
@@ -45,5 +46,11 @@ public class UserController {
 		}
 
 		return new ResultMsg(0,"登录失败，帐号密码错误！");
+	}
+	@RequestMapping(value="/logout")
+
+	public String logout(HttpSession session){
+		session.invalidate();
+		return "login";
 	}
 }
