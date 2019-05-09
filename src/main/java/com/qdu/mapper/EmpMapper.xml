@@ -213,6 +213,9 @@
       <if test="state!=null">
         and state = #{state,jdbcType=INTEGER}
       </if>
+      <if test="shopid!=null">
+        and shopid = #{shopid,jdbcType=INTEGER}
+      </if>
     </where>
   </select>
 
