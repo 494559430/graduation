@@ -12,14 +12,16 @@
     a{
         text-decoration-line: none;
     }
+    #background{
+        background-image: url(${pageContext.request.contextPath}/css/background.png);
+        background-size: 100% 150px;
+    }
 </style>
 <body>
 
 <div  class="easyui-layout" data-options="fit:true">
-    <div data-options="region:'north'" style="height:150px;">
-        <div class="navbar-header" style="padding-top:1px;padding-bottom:10px;height:20px;width:100%;background-color:rgb(149, 184, 231)">
-        <h3 style="align:right;"><span>欢迎,第${user.shopId}分店管理员${user.username}</span><spna><a href="javascript:void(0)" onclick="logout();">退出</a></spna></h3>
-      </div>
+    <div data-options="region:'north'" id="background" style="height:150px;">
+
     </div>
     <div data-options="region:'west',title:'导航'" style="width:250px;">
         <div id="aa" class="easyui-accordion" style="width:250px;height:300px;" data-options="fit:true,multiple:false">
@@ -55,6 +57,9 @@
     <div data-options="region:'center'" style="padding:5px;">
         <div id="content" class="easyui-tabs" data-options="fit:true">
         </div>
+    </div>
+    <div data-options="region:'south'" style="padding:2px;">
+            <span>欢迎,${user.username}</span><spna>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="logout();">退出</a></spna>
     </div>
 </div>
 <div id="index-dialog">

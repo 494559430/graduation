@@ -1,3 +1,17 @@
+--员工编号 empid
+--员工姓名 empname
+--证件号 idcard
+--性别 sex
+--年龄 age
+--邮箱 email
+--地址 loc
+--手机 phone
+--入职日期 hiredate
+--薪水 sal
+--离职日期 leavedate
+--职位编号 jobId
+--状态 state
+
 create table emp(
     empid int PRIMARY key auto_increment,
     empname VARCHAR(32),
@@ -13,11 +27,21 @@ create table emp(
     jobId VARCHAR(32),
     state int #1代表离职2为普通店员3为店长
 );
+
+--职位 jobid
+--职位名称 jobname
+--商店id shopid
 create table job(
     jobId int PRIMARY key auto_increment,
     jobName VARCHAR(32),
     shopid int
 );
+
+--供应商编号 supplierId
+--供应商名称 supplierName
+--供应商负责人 representative
+--供应商邮件 supplierEmail
+--供应商电话 supplierPhone
 CREATE table supplier(
     supplierId int PRIMARY key auto_increment,
     supplierName VARCHAR(32),
@@ -26,7 +50,14 @@ CREATE table supplier(
     supplierPhone varchar(32)
 );
 
-
+--商品id
+-- 商品名称
+--价格
+ --商品种类
+ -- 供货商id
+  --描述（备注）
+  --备用字段1
+  --备用字段2
 create TABLE shopItemDescrip(
 	shopItemid int PRIMARY key auto_increment,
 	shopItemname VARCHAR(32) ,
@@ -38,6 +69,12 @@ create TABLE shopItemDescrip(
 	by2 varchar(100)
 );
 
+--商品id
+--超市id
+--数量
+--是否上架
+--备用字段1
+--备用字段2
 create TABLE shopItem(
     shopItemid int,
     shopid int,
@@ -47,6 +84,7 @@ create TABLE shopItem(
     by2 varchar(100)
 );
 
+
 create table user(
     id int PRIMARY key auto_increment,
     username varchar(32),
@@ -54,8 +92,14 @@ create table user(
 	shopId int
 );
 
-
-CREATE table SaleBill(
+--销售编号 saleid
+--商店编号 shopid
+--商品编号 itemid
+--商品种类 itemtype
+--销售数量 itemnum
+--销售价格 saleprice
+--销售日期 saledate
+CREATE table salebill(
 		saleid int PRIMARY key auto_increment,
 		shopid int ,
 		itemid int,
@@ -63,28 +107,9 @@ CREATE table SaleBill(
 		salenum int,
 		saleprice double,
 		saledate varchar(20)
-)
+);
 
-CREATE TABLE `shopitem`  (
-  `shopItemid` int(11) NULL DEFAULT NULL,
-  `shopid` int(11) NULL DEFAULT NULL,
-  `num` int(11) NULL DEFAULT NULL,
-  `ifgrounding` int(11) NULL DEFAULT NULL,
-  `by1` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `by2` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
-CREATE TABLE `shopitemdescrip`  (
-  `shopItemid` int(11) NOT NULL AUTO_INCREMENT,
-  `shopItemname` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `price` double NULL DEFAULT NULL,
-  `supplierId` int(11) NULL DEFAULT NULL,
-  `shopItemType` int(11) NULL DEFAULT NULL,
-  `descrip` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `by1` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `by2` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`shopItemid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 --商店编号 shopid
 --商店名字 shopname
@@ -100,14 +125,14 @@ create table shop(
 	shopperson varchar(20),
 	shopphone	varchar(20),
 	shopstate varchar(2)
-)
+);
 
+--商品种类编号
+--商品名称
+--父编号
 CREATE TABLE `shopitemtype`  (
   `typeId` int(11) NOT NULL AUTO_INCREMENT,
   `typeName` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `parentId` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`typeId`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
-
-
+)

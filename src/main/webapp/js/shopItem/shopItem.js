@@ -92,7 +92,7 @@ var eventobj = {
             width: 600,
             height: 500,
             closed: false,
-            href: contextPath + "/shopItem/update?shopitemid="+s.shopitemid,
+            href: contextPath + "/shopItem/update?shopitemid="+s.shopitemid+"&&shopid="+s.shopid,
             modal: true,
             buttons: [{
                 text: "修改",

@@ -46,6 +46,19 @@
                     <textarea class="easyui-validatebox" name="descrip" id="descrip" cols="30" rows="10"  >${shopitemdescrip.descrip}</textarea>
                 </td>
             </tr>
+            <tr style="display: none">
+                <td>商品种类</td>
+                <td>
+                    <input  name="shopitemtype" id="shopitemtype" value="${shopitemdescrip.shopitemtype}" />
+                </td>
+
+            </tr>
+            <tr style="display: none">
+                <td>供应商</td>
+                <td>
+                    <input  name="supplierid" id="supplierid" value="${shopitemdescrip.supplierid}" />
+                </td>
+            </tr>
         </c:if>
         <c:if test="${user.shopId!=1}">
         </c:if>

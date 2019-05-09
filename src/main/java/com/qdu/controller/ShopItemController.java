@@ -55,12 +55,18 @@ public class ShopItemController {
     }
 
     @RequestMapping(value = "/update")
-    public String update(Integer shopitemid,HttpServletRequest request) {
+    public String update(Integer shopitemid,Integer shopid,HttpServletRequest request) {
         /*Shopitemdescrip shopitemdescrip = shopItemService.getDetail(shopitemid);*/
         User user = (User) request.getSession().getAttribute("user");
-        ShopItem_Descript shopItem_descript = shopItemService.getDetail2(shopitemid,user.getShopId());
+
+        if (shopid!=null){
+
+        }else{
+            shopid = user.getShopId();
+        }
+        ShopItem_Descript shopItem_descript = shopItemService.getDetail2(shopitemid,shopid);
         request.setAttribute("shopitemdescrip", shopItem_descript);
-        request.setAttribute("user",user);
+
         return "shopitem/itemUpdate";
     }
 
@@ -87,7 +93,7 @@ public class ShopItemController {
 
     @RequestMapping(value="/add")
     @ResponseBody
-    public ResultMsg add(Shopitemdescrip shopitemdescrip,String ifgrounding, HttpServletRequest request) {
+    public ResultMsg add(Shopitemdescrip shopitemdescrip,Integer ifgrounding, HttpServletRequest request) {
         ResultMsg msg = new ResultMsg();
 
         int i = shopItemService.add(shopitemdescrip);
@@ -98,9 +104,9 @@ public class ShopItemController {
         int shopid = user.getShopId();
         Shopitem shopitem = new Shopitem();
         shopitem.setShopid(user.getShopId());
-        shopitem.setShopitemid(i);
+        shopitem.setShopitemid(shopitemdescrip.getShopitemid());
         //默认上架
-        shopitem.setIfgrounding(0);
+        shopitem.setIfgrounding(ifgrounding);
         shopitem.setNum(0);
         shopItemService.add(shopitem);
 
