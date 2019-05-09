@@ -31,8 +31,9 @@ public class EmpController {
     }
     @RequestMapping(value = "/addJob")
     @ResponseBody
-    public ResultMsg addJob(Job job){
-        job.setShopid(1);
+    public ResultMsg addJob(Job job,HttpSession session){
+        User u = (User) session.getAttribute("user");
+        job.setShopid(u.getShopId());
         if(service.addJob(job)>0)
             return new ResultMsg(200,"添加职位成功");
         return new ResultMsg(500,"添加职位失败");
