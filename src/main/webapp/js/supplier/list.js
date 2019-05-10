@@ -18,8 +18,8 @@ $(function () {
             {title: "供应商邮箱", field: "supplieremail",align:"center",width:150},
             {title: "供应商电话", field: "supplierphone",align:"center",width:150},
             {title: "操作", field: "do" ,align:"center",width:175,formatter:function (value,row,index) {
-                return "<button onclick='eventobj.update(\""+row.supplierid+"\")'>修改供应商信息</button>" +
-                    "<button onclick='eventobj.select(\""+row.supplierid+"\")'>查看供应商品详情</button>";
+                return "<button onclick='eventobj.update(\""+row.supplierid+"\")'>修改供应商信息</button>" /*+
+                    "<button onclick='eventobj.select(\""+row.supplierid+"\")'>查看供应商品详情</button>";*/
             }}
         ]],
         toolbar: '#dg-toolbar'
