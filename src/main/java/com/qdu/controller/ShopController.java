@@ -3,6 +3,7 @@ package com.qdu.controller;
 import com.qdu.bean.Shop;
 import com.qdu.service.ShopItemService;
 import com.qdu.service.ShopService;
+import com.qdu.utils.ComboNode;
 import com.qdu.utils.ResultMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -86,4 +88,16 @@ public class ShopController {
         List<Shop> list = shopService.getshopList();
         return  list;
     }
+
+    @RequestMapping(value = "getshopList1")
+    @ResponseBody
+    public List<ComboNode> getshopList1(){
+        List<Shop> shoplist = shopService.getshopList();
+        List<ComboNode> list= new ArrayList<>();
+        for (Shop shop :shoplist) {
+            list.add(new ComboNode(shop.getShopid()+"",shop.getShopname()));
+        }
+        return list;
+    }
+
 }

@@ -47,7 +47,8 @@
             </div>
             <div title="连锁店管理" data-options="iconCls:'icon-reload'" style="padding:10px;">
                 <ul class="easyui-tree">
-                    <li><a class="opts" title="连锁点管理" url="/turn/toshop"><span style="display: block;width: 180px">连锁店管理</span></a></li>
+                    <li><a class="opts" title="连锁店管理" url="/turn/toshop"><span style="display: block;width: 180px">连锁店管理</span></a></li>
+                    <li><a class="opts" title="通知发放" url="/turn/toNotice"><span style="display: block;width: 180px">通知发放</span></a></li>
                 </ul>
             </div>
 
@@ -60,6 +61,7 @@
     </div>
     <div data-options="region:'south'" style="padding:2px;">
             <span>欢迎,${user.username}</span><spna>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="logout();">退出</a></spna>
+        <span style="align:right"><a class="opts" title="通知" url="/turn/notice">通知</a>&nbsp;&nbsp;&nbsp;&nbsp;你还有很多条信息未读</span>
     <script>
         function logout() {
             window.location.replace(contextPath+"/user/logout");
