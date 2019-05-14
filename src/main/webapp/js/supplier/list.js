@@ -10,6 +10,7 @@ $(function () {
         pageList: [10, 20, 30],
         fit: true,
         fitColumns:true,
+        singleSelect:true,
         columns: [[
             // {"复选框", field: "id",checkbox:true},title:
             {title: "编号", field: "supplierid",align:"center",width:150},
@@ -19,8 +20,7 @@ $(function () {
             {title: "供应商电话", field: "supplierphone",align:"center",width:150},
             {title: "操作", field: "do" ,align:"center",width:175,formatter:function (value,row,index) {
 
-                    return "<button onclick='eventobj.update(\"" + row.supplierid + "\")'>修改供应商信息</button>" +
-                        "<button onclick='eventobj.select(\"" + row.supplierid + "\")'>供应商品信息</button>";
+                    return "<button onclick='eventobj.select(\"" + row.supplierid + "\")'>供应商品信息</button>";
                }}
         ]],
         toolbar: '#dg-toolbar'
@@ -106,7 +106,7 @@ var eventobj = {
 
     },
     update:function (supplierid) {
-        /*var s = $('#dg').datagrid("getSelected");
+        var s = $('#dg').datagrid("getSelected");
          if (s ==null){
          $.messager.show({
          title:'提示',
@@ -115,13 +115,13 @@ var eventobj = {
          showType:'slide'
          });
          return ;
-         }*/
+         }
         $("#supplier-dialog").dialog({
             title: '供应商详细信息',
             width: 400,
             height: 300,
             closed: false,
-            href: contextPath+"/supplier/addAndUpdate?id="+supplierid,
+            href: contextPath+"/supplier/addAndUpdate?id="+s.supplierid,
             modal: true,
             buttons:[{
                 text:'修改',
