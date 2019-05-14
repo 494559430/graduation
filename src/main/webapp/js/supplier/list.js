@@ -18,8 +18,8 @@ $(function () {
             {title: "供应商邮箱", field: "supplieremail",align:"center",width:150},
             {title: "供应商电话", field: "supplierphone",align:"center",width:150},
             {title: "操作", field: "do" ,align:"center",width:175,formatter:function (value,row,index) {
-                return "<button onclick='eventobj.update(\""+row.supplierid+"\")'>修改供应商信息</button>" /*+
-                    "<button onclick='eventobj.select(\""+row.supplierid+"\")'>查看供应商品详情</button>";*/
+                return "<button onclick='eventobj.update(\""+row.supplierid+"\")'>修改供应商信息</button>" +
+                    "<button onclick='eventobj.select(\""+row.supplierid+"\")'>供应商品信息</button>";
             }}
         ]],
         toolbar: '#dg-toolbar'
@@ -41,13 +41,34 @@ var eventobj = {
         });
 
     },
+    select :function (supplierid) {
+
+        $("#supplier-dialog").dialog({
+            title: '供应商品详细信息',
+            width: 1000,
+            height: 500,
+            closed: false,
+            href: contextPath+"/shopItem/queryBySupplierid?supplierid="+supplierid,
+            modal: true,
+            buttons:[{
+                text:'确认',
+                iconCls:'icon-edit',
+                handler:function () {
+                    $("#supplier-dialog").dialog("close");
+                    $("#supplier-dialog").dialog("clear");
+                    $('#dg').datagrid("reload");
+                }
+            }]
+
+        });
+    },
     add :function () {
         $("#supplier-dialog").dialog({
             title: '添加',
             width: 400,
             height: 300,
             closed: false,
-            href: contextPath+"/supplier/addAndUpdate.jsp",
+            href: contextPath+"/supplier/noticeDetial.jsp",
             modal: true,
             buttons:[{
                 text:"添加",
@@ -85,51 +106,52 @@ var eventobj = {
     },
     update:function (supplierid) {
         /*var s = $('#dg').datagrid("getSelected");
-        if (s ==null){
-            $.messager.show({
-                title:'提示',
-                msg:"请选中至少一条记录",
-                timeout:5000,
-                showType:'slide'
-            });
-            return ;
-        }*/
+         if (s ==null){
+         $.messager.show({
+         title:'提示',
+         msg:"请选中至少一条记录",
+         timeout:5000,
+         showType:'slide'
+         });
+         return ;
+         }*/
         $("#supplier-dialog").dialog({
-                title: '供应商详细信息',
-                width: 400,
-                height: 300,
-                closed: false,
-                href: contextPath+"/supplier/addAndUpdate?id="+supplierid,
-                modal: true,
-                buttons:[{
-                    text:'修改',
-                    iconCls:'icon-edit',
-                    handler:function () {
-                        $("#supplier-form").form("submit",{
-                            url:contextPath+"/supplier/update",
-                            onSubmit:function (p) {
-                                // p.id = s.id;
-                                return $("#supplier-form").form("validate");
-                            },
-                            success:function (msg) {
-                                var data = $.parseJSON(msg);
-                                if(data.code === 200){
-                                    $("#supplier-dialog").dialog("close");
-                                    $("#supplier-dialog").dialog("clear");
-                                    $('#dg').datagrid("reload");
-                                }
-                                $.messager.show({
-                                    title:'我的消息',
-                                    msg:data.msg,
-                                    timeout:5000,
-                                    showType:'slide'
-                                });
+            title: '供应商详细信息',
+            width: 400,
+            height: 300,
+            closed: false,
+            href: contextPath+"/supplier/addAndUpdate?id="+supplierid,
+            modal: true,
+            buttons:[{
+                text:'修改',
+                iconCls:'icon-edit',
+                handler:function () {
+                    $("#supplier-form").form("submit",{
+                        url:contextPath+"/supplier/update",
+                        onSubmit:function (p) {
+                            // p.id = s.id;
+                            return $("#supplier-form").form("validate");
+                        },
+                        success:function (msg) {
+                            var data = $.parseJSON(msg);
+                            if(data.code === 200){
+                                $("#supplier-dialog").dialog("close");
+                                $("#supplier-dialog").dialog("clear");
+                                $('#dg').datagrid("reload");
                             }
-                        })
-                    }
-                }]
+                            $.messager.show({
+                                title:'我的消息',
+                                msg:data.msg,
+                                timeout:5000,
+                                showType:'slide'
+                            });
+                        }
+                    })
+                }
+            }]
 
         });
     }
+
 
 }

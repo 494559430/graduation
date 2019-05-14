@@ -54,6 +54,13 @@ public class ShopItemController {
         return "shopitem/itemDetail";
     }
 
+    @RequestMapping(value = "/queryBySupplierid")
+    public String queryBySupplierid(int supplierid, HttpServletRequest request){
+        request.setAttribute("supplierid",supplierid);
+        return "supplier/itemDetail";
+    }
+
+
     @RequestMapping(value = "/update")
     public String update(Integer shopitemid,Integer shopid,HttpServletRequest request) {
         /*Shopitemdescrip shopitemdescrip = shopItemService.getDetail(shopitemid);*/
