@@ -135,4 +135,21 @@ CREATE TABLE `shopitemtype`  (
   `typeName` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `parentId` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`typeId`) USING BTREE
+);
+
+
+CREATE table notice(
+id int PRIMARY KEY auto_increment,
+title VARCHAR(64),
+content VARCHAR(2048),
+date varchar(32)
+);
+
+CREATE table notice_shop(
+id int,
+shopid int,
+isRead int --0未读1已读
 )
+
+
+

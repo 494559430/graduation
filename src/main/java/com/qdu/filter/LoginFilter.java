@@ -20,7 +20,10 @@ public class LoginFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         String url = request.getRequestURL().toString();
         if (url.indexOf("login.jsp")>=0){
-            chain.doFilter(req, resp); return;
+            if (request.getSession().getAttribute("user")==null) {
+                chain.doFilter(req, resp);
+                return;
+            }
         }
 
         if (request.getSession().getAttribute("user")!=null){
