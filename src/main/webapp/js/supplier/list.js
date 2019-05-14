@@ -18,9 +18,10 @@ $(function () {
             {title: "供应商邮箱", field: "supplieremail",align:"center",width:150},
             {title: "供应商电话", field: "supplierphone",align:"center",width:150},
             {title: "操作", field: "do" ,align:"center",width:175,formatter:function (value,row,index) {
-                return "<button onclick='eventobj.update(\""+row.supplierid+"\")'>修改供应商信息</button>" +
-                    "<button onclick='eventobj.select(\""+row.supplierid+"\")'>供应商品信息</button>";
-            }}
+
+                    return "<button onclick='eventobj.update(\"" + row.supplierid + "\")'>修改供应商信息</button>" +
+                        "<button onclick='eventobj.select(\"" + row.supplierid + "\")'>供应商品信息</button>";
+               }}
         ]],
         toolbar: '#dg-toolbar'
 
@@ -68,7 +69,7 @@ var eventobj = {
             width: 400,
             height: 300,
             closed: false,
-            href: contextPath+"/supplier/noticeDetial.jsp",
+            href: contextPath+"/supplier/addAndUpdate.jsp",
             modal: true,
             buttons:[{
                 text:"添加",

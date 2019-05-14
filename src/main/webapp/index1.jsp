@@ -41,12 +41,13 @@
                     <li><a class="opts" title="销售统计" url="/turn/tosalebill"><span style="display: block;width: 180px">销售统计</span></a></li>
                 </ul>
             </div>
-            <c:if test="${user.shopId==1}">
+
             <div title="供应商管理" data-options="iconCls:'icon-reload'" style="padding:10px;">
                 <ul class="easyui-tree">
                     <li><a class="opts" title="供应商查看" url="/supplier/supplier"><span style="display: block;width: 180px">供应商查看</span></a></li>
                 </ul>
             </div>
+            <c:if test="${user.shopId==1}">
             <div title="连锁店管理" data-options="iconCls:'icon-reload'" style="padding:10px;">
                 <ul class="easyui-tree">
                     <li><a class="opts" title="连锁店管理" url="/turn/toshop"><span style="display: block;width: 180px">连锁店管理</span></a></li>
