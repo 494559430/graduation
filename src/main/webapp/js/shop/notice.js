@@ -11,11 +11,12 @@ $(function () {
         pageNumber: 1,
         pageSize: 10,
         pageList: [10, 20, 30],
+       /* checkOnSelect:true,*/
         fit: true,
         fitColumns:true,
-        singleSelect:true,
+        singleSelect:false,
         columns: [[
-            //{title: "复选框", field: "id",checkbox:true},
+            {title: "复选框", field: "id",checkbox:true},
             {title: "标题", field: "title",align:"center",width:150},
             {title: "内容", field: "content",align:"center",width:300},
             {title: "时间", field: "date",align:"center",width:75},
@@ -66,6 +67,50 @@ var eventobj = {
 
             }]
         })
+    },
+    delete:function () {
+        var s = $('#dg').datagrid("getSelections");
+        if (s ==null){
+            $.messager.show({
+                title:'提示',
+                msg:"请选中至少一条记录",
+                timeout:5000,
+                showType:'slide'
+            });
+            return ;
+        }
+        var ids = [];
+        $.each(s, function(index, item){
+            ids.push(item.id);
+        });
+        if(confirm('确定要删除'+s.length+'条消息吗？')==true){
+
+            $.ajax({
+                type: "post",
+                url: contextPath+"/notice/deleteNotice?ids="+ids.join(","),
+                dataType: "json",
+                success: function(msg){
+                    var data = msg;
+                    if(data.code === 200){
+                        $('#dg').datagrid("reload");
+
+                    }
+                    $.messager.show({
+                        title:'我的消息',
+                        msg:data.msg,
+                        timeout:5000,
+                        showType:'slide'
+                    });
+
+                }
+            });
+
+        }else{
+
+            return ;
+
+        }
+
     }
 
 

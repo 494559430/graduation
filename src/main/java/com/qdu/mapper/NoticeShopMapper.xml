@@ -42,4 +42,12 @@
     set isRead='2'
     where id = #{id,jdbcType=INTEGER} and shopid = #{shopid,jdbcType=INTEGER}
   </update>
+  <delete id="delete" parameterType="map" >
+    delete from notice_shop
+    where id in
+    <foreach item="item" index="index" collection="ids" open="(" close=")" separator=",">
+      #{item}
+    </foreach>
+     and shopid = #{shopid}
+  </delete>
 </mapper>

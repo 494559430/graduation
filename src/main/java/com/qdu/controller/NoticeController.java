@@ -57,4 +57,22 @@ public class NoticeController {
         service.updateRead(id,u.getShopId());
         return "/shop/noticeDetial";
     }
+
+    @RequestMapping(value = "/deleteNotice")
+    @ResponseBody
+    public ResultMsg deleteNotice(String ids,HttpServletRequest request){
+        ResultMsg msg = new ResultMsg();
+        String[] id = ids.split(",");
+
+        User u = (User) request.getSession().getAttribute("user");
+        int i = service.delete(id,u.getShopId());
+        if(i>=1){
+            msg.setCode(200);
+            msg.setMsg("删除成功");
+        }else{
+            msg.setCode(500);
+            msg.setMsg("删除失败");
+        }
+        return msg;
+    }
 }

@@ -78,5 +78,17 @@ public class NoticeServiceImpl implements NoticeService {
         mapper2.updateRead(notice);
     }
 
+    @Override
+    public int delete(String[] id,Integer shopid) {
+        Map<String,Object> map = new HashMap<String, Object>(){
+            {
+                put("ids",id);
+                put("shopid",shopid);
+            }
+        };
+        return mapper2.delete(map);
+
+    }
+
 
 }

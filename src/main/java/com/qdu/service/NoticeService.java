@@ -16,4 +16,6 @@ public interface NoticeService {
     Notice getNoticeById(int id);
 
     void updateRead(int id, Integer shopId);
+
+    int delete(String[] id,Integer shopid);
 }

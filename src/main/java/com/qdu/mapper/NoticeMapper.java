@@ -20,4 +20,6 @@ public interface NoticeMapper {
     int updateByPrimaryKey(Notice record);
 
     List<Notice> selectByShopid(Notice notice);
+
+
 }
