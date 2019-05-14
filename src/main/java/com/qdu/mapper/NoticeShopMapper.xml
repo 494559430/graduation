@@ -37,4 +37,9 @@
       </if>
     </trim>
   </insert>
+  <update id="updateRead" parameterType="com.qdu.bean.Notice" >
+    update notice_shop
+    set isRead='2'
+    where id = #{id,jdbcType=INTEGER} and shopid = #{shopid,jdbcType=INTEGER}
+  </update>
 </mapper>

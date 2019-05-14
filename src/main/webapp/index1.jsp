@@ -61,7 +61,7 @@
     </div>
     <div data-options="region:'south'" style="padding:2px;">
             <span>欢迎,${user.username}</span><spna>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" onclick="logout();">退出</a></spna>
-        <span style="align:right"><a class="opts" title="通知" url="/turn/notice">通知</a>&nbsp;&nbsp;&nbsp;&nbsp;你还有很多条信息未读</span>
+        <span style="align:right">&nbsp;&nbsp;&nbsp;&nbsp;你还有很多条<a class="opts" title="通知" url="/turn/notice">通知</a>未读</span>
     <script>
         function logout() {
             window.location.replace(contextPath+"/user/logout");

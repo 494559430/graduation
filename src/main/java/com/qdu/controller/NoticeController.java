@@ -2,6 +2,7 @@ package com.qdu.controller;
 
 import com.qdu.bean.Notice;
 import com.qdu.bean.Shop;
+import com.qdu.bean.User;
 import com.qdu.service.NoticeService;
 import com.qdu.service.ShopItemService;
 import com.qdu.service.ShopService;
@@ -9,10 +10,13 @@ import com.qdu.utils.ComboNode;
 import com.qdu.utils.ResultMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -36,5 +40,21 @@ public class NoticeController {
         }
         return new ResultMsg(0,"发布失败，请联系管理员!!");
     }
+    @RequestMapping(value="/getList")
+    @ResponseBody
+    public Map<String,Object> query(Integer page, Integer rows,Notice notice,HttpSession session){
+        User u = (User) session.getAttribute("user");
+        notice.setShopid(u.getShopId());
+        return service.getNoticeByShopid(page, rows, notice);
+    }
+    @RequestMapping(value="/getDetail")
 
+    public String getDetail(int id,Model m,HttpSession session){
+
+            Notice n =service.getNoticeById(id);
+            m.addAttribute("n", n);
+        User u = (User) session.getAttribute("user");
+        service.updateRead(id,u.getShopId());
+        return "/shop/noticeDetial";
+    }
 }

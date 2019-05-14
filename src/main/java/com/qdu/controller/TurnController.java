@@ -50,6 +50,10 @@ public class TurnController {
     public String toNotice(){
         return "shop/tonotice";
     }
+    @RequestMapping(value = "/notice")
+    public String notice(){
+        return "shop/notice";
+    }
 
     @RequestMapping(value = "/toshopAdd")
     public String toshopAdd(){

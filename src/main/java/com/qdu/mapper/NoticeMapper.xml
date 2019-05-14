@@ -6,6 +6,9 @@
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="date" property="date" jdbcType="VARCHAR" />
+    <result column="shopid" property="shopid" jdbcType="INTEGER" />
+    <result column="isRead" property="isRead" jdbcType="INTEGER" />
+
   </resultMap>
   <sql id="Base_Column_List" >
     id, title, content, date
@@ -82,4 +85,16 @@
       date = #{date,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByShopid" resultMap="BaseResultMap" parameterType="notice" >
+    SELECT a.id,a.title,a.content,a.date,b.shopid,b.isRead from notice a join notice_shop b on a.id=b.id
+    <where>
+      <if test="isRead!=null and isRead !=''">
+        isRead =#{isRead}
+      </if>
+      <if test="shopid!=null and shopid !=''">
+        and shopid =#{shopid}
+      </if>
+    </where>
+  </select>
 </mapper>
