@@ -96,5 +96,6 @@
         and shopid =#{shopid}
       </if>
     </where>
+    ORDER BY a.id DESC
   </select>
 </mapper>

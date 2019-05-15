@@ -55,6 +55,8 @@ public class NoticeController {
             m.addAttribute("n", n);
         User u = (User) session.getAttribute("user");
         service.updateRead(id,u.getShopId());
+        int num = service.unreadNum(u.getShopId());
+        session.setAttribute("unread",num);
         return "/shop/noticeDetial";
     }
 

@@ -90,5 +90,10 @@ public class NoticeServiceImpl implements NoticeService {
 
     }
 
+    @Override
+    public int unreadNum(Integer shopId) {
+        return mapper2.unreadNum(shopId);
+    }
+
 
 }

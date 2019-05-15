@@ -3,6 +3,7 @@ package com.qdu.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.qdu.service.NoticeService;
 import com.qdu.utils.ResultMsg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +22,8 @@ import javax.servlet.http.HttpSession;
 public class UserController {
 	@Autowired
 	public UserService service;
+	@Autowired
+	public NoticeService noticeService;
 	@RequestMapping(value="/add",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> add(User user){
@@ -40,8 +43,11 @@ public class UserController {
 	@ResponseBody
 	public ResultMsg login(User u, HttpServletRequest request){
 		User user = service.login(u);
+
 		if (user!=null&&user.getUsername()!=null){
 			request.getSession().setAttribute("user",user);
+			int num = noticeService.unreadNum(user.getShopId());
+			request.getSession().setAttribute("unread",num);
 			return new ResultMsg(1,"登陆成功，请等待跳转。。。。");
 		}
 

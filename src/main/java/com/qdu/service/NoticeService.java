@@ -18,4 +18,6 @@ public interface NoticeService {
     void updateRead(int id, Integer shopId);
 
     int delete(String[] id,Integer shopid);
+
+    int unreadNum(Integer shopId);
 }

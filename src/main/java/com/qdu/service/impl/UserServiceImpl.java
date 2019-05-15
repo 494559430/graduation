@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 
 
 import com.qdu.bean.User;
+import com.qdu.mapper.NoticeShopMapper;
 import com.qdu.mapper.UserMapper;
 import com.qdu.service.UserService;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ public class UserServiceImpl implements UserService{
 
 	@Resource
 	private UserMapper mapper;
+	@Resource
+	private NoticeShopMapper mapper1;
 	
 	@Override
 	public int add(User user) {
@@ -27,8 +30,6 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public User login(User user) {
-		return mapper.select(user);
-	}
+	public User login(User user) {return mapper.select(user);}
 
 }

@@ -15,4 +15,6 @@ public interface NoticeShopMapper {
 
 
     int delete(Map<String, Object> map);
+
+    int unreadNum(int shopid);
 }

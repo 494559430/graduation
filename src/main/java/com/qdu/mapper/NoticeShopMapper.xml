@@ -50,4 +50,7 @@
     </foreach>
      and shopid = #{shopid}
   </delete>
+  <select id="unreadNum" resultType="int" parameterType="int" >
+    SELECT count(*) from notice_shop where shopid=#{shopid} and isread='1'
+  </select>
 </mapper>
