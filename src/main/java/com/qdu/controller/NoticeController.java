@@ -47,6 +47,12 @@ public class NoticeController {
         notice.setShopid(u.getShopId());
         return service.getNoticeByShopid(page, rows, notice);
     }
+    @RequestMapping(value="/getAllNotice")
+    @ResponseBody
+    public Map<String,Object> getAllNotice(Integer page, Integer rows){
+
+        return service.getAllNotice(page, rows);
+    }
     @RequestMapping(value="/getDetail")
 
     public String getDetail(int id,Model m,HttpSession session){
@@ -54,7 +60,9 @@ public class NoticeController {
             Notice n =service.getNoticeById(id);
             m.addAttribute("n", n);
         User u = (User) session.getAttribute("user");
-        service.updateRead(id,u.getShopId());
+        if (u.getShopId()!=1) {
+            service.updateRead(id, u.getShopId());
+        }
         int num = service.unreadNum(u.getShopId());
         session.setAttribute("unread",num);
         return "/shop/noticeDetial";

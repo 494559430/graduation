@@ -10,7 +10,7 @@ import java.util.Map;
  */
 public interface NoticeService {
     boolean addNotice(Notice notice);
-    Map<String, Object> getAllNotice();
+    Map<String, Object> getAllNotice(Integer page, Integer rows);
     Map<String, Object> getNoticeByShopid(Integer page, Integer rows, Notice notice);
 
     Notice getNoticeById(int id);

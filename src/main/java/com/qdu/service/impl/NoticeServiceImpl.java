@@ -49,8 +49,14 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public Map<String, Object> getAllNotice() {
-        return null;
+    public Map<String, Object> getAllNotice(Integer page, Integer rows) {
+        PageHelper.startPage(page,rows);
+        List<Notice> list = mapper1.getAllNotice();
+        PageInfo<Notice> pi = new PageInfo<>(list);
+        Map<String, Object> result = new HashMap<>();
+        result.put("rows", list);
+        result.put("total", pi.getTotal());
+        return result;
     }
 
     @Override

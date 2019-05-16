@@ -98,4 +98,9 @@
     </where>
     ORDER BY a.id DESC
   </select>
+  <select id="getAllNotice" resultMap="BaseResultMap" >
+    SELECT a.id,a.title,a.content,a.date,b.shopid,b.isRead from notice a join notice_shop b on a.id=b.id
+
+    ORDER BY a.id DESC
+  </select>
 </mapper>

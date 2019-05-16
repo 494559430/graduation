@@ -54,6 +54,10 @@ public class TurnController {
     public String notice(){
         return "shop/notice";
     }
+    @RequestMapping(value = "/getAllNotice")
+    public String getAllNotice(){
+        return "shop/noticeHistory";
+    }
 
     @RequestMapping(value = "/toshopAdd")
     public String toshopAdd(){

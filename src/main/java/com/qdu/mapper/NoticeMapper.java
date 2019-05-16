@@ -4,6 +4,7 @@ import com.qdu.bean.Notice;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface NoticeMapper {
@@ -22,4 +23,5 @@ public interface NoticeMapper {
     List<Notice> selectByShopid(Notice notice);
 
 
+    List<Notice> getAllNotice();
 }

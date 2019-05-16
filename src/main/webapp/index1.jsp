@@ -52,6 +52,7 @@
                 <ul class="easyui-tree">
                     <li><a class="opts" title="连锁店管理" url="/turn/toshop"><span style="display: block;width: 180px">连锁店管理</span></a></li>
                     <li><a class="opts" title="通知发放" url="/turn/toNotice"><span style="display: block;width: 180px">通知发放</span></a></li>
+                    <li><a class="opts" title="历史通知" url="/turn/getAllNotice"><span style="display: block;width: 180px">历史通知</span></a></li>
                 </ul>
             </div>
             </c:if>
