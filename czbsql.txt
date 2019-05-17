@@ -140,15 +140,15 @@ CREATE TABLE `shopitemtype`  (
 
 CREATE table notice(
 id int PRIMARY KEY auto_increment,
-title VARCHAR(64),
-content VARCHAR(2048),
+title VARCHAR(2048),
+content VARCHAR(20480),
 date varchar(32)
 );
 
 CREATE table notice_shop(
 id int,
 shopid int,
-isRead int --0未读1已读
+isRead int --1未读2已读3警告
 )
 
 
