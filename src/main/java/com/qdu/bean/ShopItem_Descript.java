@@ -24,7 +24,7 @@ public class ShopItem_Descript {
     private String descrip;
 
     private String ifgroundingStr;
-
+    private String by1;
     public Integer getShopitemid() {
         return shopitemid;
     }
@@ -95,6 +95,14 @@ public class ShopItem_Descript {
 
     public void setDescrip(String descrip) {
         this.descrip = descrip;
+    }
+
+    public String getBy1() {
+        return by1;
+    }
+
+    public void setBy1(String by1) {
+        this.by1 = by1;
     }
 
     public String getIfgroundingStr() {

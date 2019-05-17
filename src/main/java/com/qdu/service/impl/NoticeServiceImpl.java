@@ -2,10 +2,10 @@ package com.qdu.service.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.qdu.bean.Notice;
-import com.qdu.bean.NoticeShop;
+import com.qdu.bean.*;
 import com.qdu.mapper.NoticeMapper;
 import com.qdu.mapper.NoticeShopMapper;
+import com.qdu.mapper.ShopitemdescripMapper;
 import com.qdu.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +25,8 @@ public class NoticeServiceImpl implements NoticeService {
     NoticeMapper mapper1;
     @Autowired
     NoticeShopMapper mapper2;
+    @Autowired
+    ShopitemdescripMapper mapper3;
     @Override
     public boolean addNotice(Notice notice) {
         try {
@@ -99,6 +101,38 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public int unreadNum(Integer shopId) {
         return mapper2.unreadNum(shopId);
+    }
+
+    @Override
+    public void buhuoNotice() {
+        try {
+            List<ShopItem_Descript> shopitems = mapper3.checkNum();
+            Notice alarm = new Notice();
+            NoticeShop noticeShop = new NoticeShop();
+            if (shopitems != null && shopitems.size() > 0) {
+                for (ShopItem_Descript shopitemdescrip : shopitems) {
+                    //通知表添加数据
+                    String title = shopitemdescrip.getShopitemname() + "库存不足警告";
+                    String content = shopitemdescrip.getSupplierid()+shopitemdescrip.getBy1()+ "提供的" + shopitemdescrip.getShopitemname() + "数量为" + shopitemdescrip.getNum() + ",库存已不足1000，请及时向供应商进货";
+                    alarm.setShopid(shopitemdescrip.getShopid());
+                    Date date = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    alarm.setDate(sdf.format(date));
+                    alarm.setContent(content);
+                    alarm.setTitle(title);
+                    mapper1.insert(alarm);
+                    //通知关系表添加数据
+                    noticeShop.setShopid(shopitemdescrip.getShopid());
+                    noticeShop.setId(alarm.getId());
+                    noticeShop.setIsread(3);
+                    mapper2.insertSelective(noticeShop);
+                    System.out.print("警告发送成功");
+                }
+            }
+        }catch (Exception e){
+         e.printStackTrace();
+            System.out.print("警告发送失败");
+        }
     }
 
 

@@ -23,8 +23,10 @@ $(function () {
             {title: "状态", field: "isRead",align:"center",width:75,formatter:function (value,row,index) {
                 if (value=='1')
                     return "未读";
+                else if (value=='3')
+                    return "警告";
                 else
-                    return "已读";
+                    return "未读";
             }},
             {title: "操作", field: "do" ,align:"center",width:50,formatter:function (value,row,index) {
                 return "<button onclick='eventobj.detail(\""+row.id+"\")'>查看</button>";

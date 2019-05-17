@@ -20,4 +20,6 @@ public interface NoticeService {
     int delete(String[] id,Integer shopid);
 
     int unreadNum(Integer shopId);
+
+    void buhuoNotice();
 }

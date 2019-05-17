@@ -1,10 +1,10 @@
 package com.qdu.mapper;
 
 import com.qdu.bean.ShopItem_Descript;
+
 import com.qdu.bean.Shopitemdescrip;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Repository
@@ -24,4 +24,6 @@ public interface ShopitemdescripMapper {
     List<ShopItem_Descript> getList(ShopItem_Descript shopitem_descript);
 
     ShopItem_Descript selectByPrimaryKey2(Integer shopitemid,Integer shopid);
+
+    List<ShopItem_Descript> checkNum();
 }
