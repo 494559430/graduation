@@ -26,7 +26,7 @@ $(function () {
                 else if (value=='3')
                     return "警告";
                 else
-                    return "未读";
+                    return "已读";
             }},
             {title: "操作", field: "do" ,align:"center",width:50,formatter:function (value,row,index) {
                 return "<button onclick='eventobj.detail(\""+row.id+"\")'>查看</button>";

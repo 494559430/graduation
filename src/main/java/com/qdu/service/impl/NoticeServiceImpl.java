@@ -83,6 +83,7 @@ public class NoticeServiceImpl implements NoticeService {
         Notice notice = new Notice();
         notice.setId(id);
         notice.setShopid(shopId);
+        notice.setIsRead(2);
         mapper2.updateRead(notice);
     }
 
@@ -112,8 +113,8 @@ public class NoticeServiceImpl implements NoticeService {
             if (shopitems != null && shopitems.size() > 0) {
                 for (ShopItem_Descript shopitemdescrip : shopitems) {
                     //通知表添加数据
-                    String title = shopitemdescrip.getShopitemname() + "库存不足警告";
-                    String content = shopitemdescrip.getSupplierid()+shopitemdescrip.getBy1()+ "提供的" + shopitemdescrip.getShopitemname() + "数量为" + shopitemdescrip.getNum() + ",库存已不足1000，请及时向供应商进货";
+                    String title = "<span style=\"color: rgb(255, 0, 0); font-weight: bold;\">"+shopitemdescrip.getShopitemname() + "库存不足警告</span>";
+                    String content = "<span style=\"color: rgb(255, 0, 0); font-weight: bold;\">"+shopitemdescrip.getSupplierid()+shopitemdescrip.getBy1()+ "提供的" + shopitemdescrip.getShopitemname() + "数量为" + shopitemdescrip.getNum() + ",库存已不足1000，请及时向供应商进货</span>";
                     alarm.setShopid(shopitemdescrip.getShopid());
                     Date date = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
