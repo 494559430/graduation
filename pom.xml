@@ -155,6 +155,12 @@
       <version>2.3.3</version>
     </dependency>
     <!-- springframework end -->
+    <dependency>
+    <groupId>net.sf.json-lib</groupId>
+    <artifactId>json-lib</artifactId>
+    <version>2.4</version>
+    <classifier>jdk15</classifier>
+  </dependency>
 
     <!-- mybatis 包 -->
     <dependency>

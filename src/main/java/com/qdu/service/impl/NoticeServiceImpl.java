@@ -5,16 +5,15 @@ import com.github.pagehelper.PageInfo;
 import com.qdu.bean.*;
 import com.qdu.mapper.NoticeMapper;
 import com.qdu.mapper.NoticeShopMapper;
+import com.qdu.mapper.ShopMapper;
 import com.qdu.mapper.ShopitemdescripMapper;
 import com.qdu.service.NoticeService;
+import com.qdu.utils.JuheDemo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Administrator on 2019/5/13.
@@ -27,6 +26,8 @@ public class NoticeServiceImpl implements NoticeService {
     NoticeShopMapper mapper2;
     @Autowired
     ShopitemdescripMapper mapper3;
+    @Autowired
+    ShopMapper mapper4;
     @Override
     public boolean addNotice(Notice notice) {
         try {
@@ -110,6 +111,7 @@ public class NoticeServiceImpl implements NoticeService {
             List<ShopItem_Descript> shopitems = mapper3.checkNum();
             Notice alarm = new Notice();
             NoticeShop noticeShop = new NoticeShop();
+            Set<String> phones =new HashSet<>();
             if (shopitems != null && shopitems.size() > 0) {
                 for (ShopItem_Descript shopitemdescrip : shopitems) {
                     //通知表添加数据
@@ -127,7 +129,15 @@ public class NoticeServiceImpl implements NoticeService {
                     noticeShop.setId(alarm.getId());
                     noticeShop.setIsread(3);
                     mapper2.insertSelective(noticeShop);
-                    System.out.print("警告发送成功");
+                    //获取发短信号码
+                    Shop shop =mapper4.selectByPrimaryKey(shopitemdescrip.getShopid());
+                    phones.add(shop.getShopphone());
+                    System.out.print("发送一条警告");
+                }
+                System.out.print(phones);
+                for (String phone: phones
+                     ) {
+                    JuheDemo.mobileQuery(phone);//调用聚合网短信接口通知商店负责人补货
                 }
             }
         }catch (Exception e){
