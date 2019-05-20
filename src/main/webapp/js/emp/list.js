@@ -229,4 +229,14 @@ var eventobj = {
             }
         });
     }
+};
+function addSal(){
+    var sal =parseInt($("#sal").val());
+    sal +=100;
+    $("#sal").val(sal);
+}
+function subSal(){
+    var sal =parseInt($("#sal").val());
+    sal -=100;
+    $("#sal").val(sal);
 }
