@@ -81,7 +81,12 @@ public class ShopItemController {
     @ResponseBody
     public ResultMsg update2(Shopitemdescrip shopitemdescrip,Integer num,Integer ifgrounding,Integer shopid , HttpServletRequest request) {
         ResultMsg msg = new ResultMsg();
-        int i = shopItemService.update(shopitemdescrip);
+        User user = (User)request.getSession().getAttribute("user");
+        int sid =  user.getShopId();
+        int i =1;
+        if(sid==1){
+            i = shopItemService.update(shopitemdescrip);
+        }
         Shopitem shopitem = new Shopitem();
         shopitem.setIfgrounding(ifgrounding);
         shopitem.setShopitemid(shopitemdescrip.getShopitemid());

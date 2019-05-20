@@ -159,10 +159,10 @@
       <if test="shopid != null and shopid != ''" >
         and a.shopid = #{shopid,jdbcType=INTEGER}
       </if>
-      <if test="supplierid != null and supplierid != ''" >
+      <if test="supplierid != null " >
       and b.supplierid = #{supplierid,jdbcType=INTEGER}
     </if>
-      <if test="shopitemtype != null and shopitemtype != ''" >
+      <if test="shopitemtype != null " >
         and b.shopitemtype = #{shopitemtype,jdbcType=VARCHAR}
       </if>
       <if test="shopitemname != null and shopitemname != ''" >

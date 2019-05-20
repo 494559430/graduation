@@ -23,6 +23,31 @@
             message: '请输入数字'
         }
     });
+    $.ajax({
+        type: "post",
+        url: contextPath + "/supplier/getsupplier",
+        dataType: "json",
+        success: function (data) {
+            for(var i in data){
+                $("#supplierid")[0].innerHTML=$("#supplierid")[0].innerHTML+"<option value='"+data[i].supplierid+"'>"+data[i].suppliername+"</option>"
+            }
+            var x = document.getElementById("up1").value;
+            $("#supplierid").val(x);
+        }
+    })
+    $.ajax({
+        type: "post",
+        url: contextPath + "/ShopItemTypeController/getshopitemtype",
+        dataType: "json",
+        success: function (data) {
+            for(var i in data){
+                $("#shopitemtype")[0].innerHTML=$("#shopitemtype")[0].innerHTML+"<option value='"+data[i].typeid+"'>"+data[i].typename+"</option>"
+
+            }
+            var x = document.getElementById("up2").value;
+            $("#shopitemtype").val(x);
+        }
+    })
 </script>
 <form id="supplier-form" method="post">
     <table style="margin:20px auto;" cellpadding="5px" cellspacing="5px">
@@ -47,12 +72,33 @@
                 </td>
             </tr>
 
-            <tr style="display: none">
+            <tr >
                 <td>供应商</td>
                 <td>
-                    <input  name="supplierid" id="supplierid" value="${shopitemdescrip.supplierid}" />
+                    <%--<input  name="supplierid" id="supplierid" value="${shopitemdescrip.supplierid}" />--%>
+                        <input type="hidden" value="${shopitemdescrip.supplierid}" id="up1"/>
+                    <select id="supplierid" name="supplierid">
+
+                    </select>
+                        <script>
+
+                        </script>
                 </td>
+
             </tr>
+            <tr >
+                <td>种类</td>
+                <td>
+                    <input type="hidden" value="${shopitemdescrip.shopitemtype}" id="up2"/>
+                    <select id="shopitemtype" name="shopitemtype"></select>
+                    <script>
+
+                    </script>
+                   <%-- <input  name="shopitemtype" id="shopitemtype" value="${shopitemdescrip.shopitemtype}" />--%>
+                </td>
+
+            </tr>
+
         </c:if>
         <c:if test="${user.shopId!=1}">
             <tr>

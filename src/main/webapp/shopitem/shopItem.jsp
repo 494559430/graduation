@@ -21,6 +21,7 @@
     <input id="shopitemid" name="shopitemid" class="easyui-textbox" data-options="width:180" class="easyui-validatebox"  />
     商品名称：
     <input id="shopitemname" name="shopitemname" class="easyui-textbox" data-options="width:180" />
+
 <c:if test="${user.shopId==1}">
     商店名称：
     <select id="shopid" name="shopid">
