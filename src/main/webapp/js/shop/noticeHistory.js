@@ -29,18 +29,11 @@ $(function () {
 })
 
 var eventobj = {
-    query0:function (){
+    query3:function (){
 
 
         $("#dg").datagrid('load',{
-            isRead:"1"
-        });
-    },
-    query1:function (){
-
-
-        $("#dg").datagrid('load',{
-            isRead:"2"
+            isRead:"3"
         });
     },
     detail:function (id) {

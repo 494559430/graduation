@@ -51,6 +51,13 @@ var eventobj = {
             isRead:"2"
         });
     },
+    query3:function (){
+
+
+        $("#dg").datagrid('load',{
+            isRead:"3"
+        });
+    },
     detail:function (id) {
         $("#notice-dialog").dialog({
             title: '通知',

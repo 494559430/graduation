@@ -24,8 +24,8 @@
 <table id="dg"></table>
 <div id="dg-toolbar">
 
-    <a  href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="eventobj.query0()">未读消息</a>
-    <a  href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="eventobj.query1()">已读消息</a>
+
+    <a  href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="eventobj.query3()">警告消息</a>
     <a  href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="eventobj.delete()">删除</a>
 </div>
 <div id="notice-dialog">

@@ -1,16 +1,16 @@
---员工编号 empid
---员工姓名 empname
---证件号 idcard
---性别 sex
---年龄 age
---邮箱 email
---地址 loc
---手机 phone
---入职日期 hiredate
---薪水 sal
---离职日期 leavedate
---职位编号 jobId
---状态 state
+##员工编号 empid
+##员工姓名 empname
+##证件号 idcard
+##性别 sex
+##年龄 age
+##邮箱 email
+##地址 loc
+##手机 phone
+##入职日期 hiredate
+##薪水 sal
+##离职日期 leavedate
+##职位编号 jobId
+##状态 state
 
 create table emp(
     empid int PRIMARY key auto_increment,
@@ -28,20 +28,20 @@ create table emp(
     state int #1代表离职2为普通店员3为店长
 );
 
---职位 jobid
---职位名称 jobname
---商店id shopid
+##职位 jobid
+##职位名称 jobname
+##商店id shopid
 create table job(
     jobId int PRIMARY key auto_increment,
     jobName VARCHAR(32),
     shopid int
 );
 
---供应商编号 supplierId
---供应商名称 supplierName
---供应商负责人 representative
---供应商邮件 supplierEmail
---供应商电话 supplierPhone
+##供应商编号 supplierId
+##供应商名称 supplierName
+##供应商负责人 representative
+##供应商邮件 supplierEmail
+##供应商电话 supplierPhone
 CREATE table supplier(
     supplierId int PRIMARY key auto_increment,
     supplierName VARCHAR(32),
@@ -50,15 +50,15 @@ CREATE table supplier(
     supplierPhone varchar(32)
 );
 
---商品id
--- 商品名称
---价格
- --商品种类
- -- 供货商id
-  --描述（备注）
-  --备用字段1
-  --备用字段2
-create TABLE shopItemDescrip(
+##商品id
+## 商品名称
+##价格
+##商品种类
+##供货商id
+##描述（备注）
+##备用字段1
+##备用字段2
+create TABLE shopitemdescrip(
 	shopItemid int PRIMARY key auto_increment,
 	shopItemname VARCHAR(32) ,
 	price double,
@@ -69,12 +69,12 @@ create TABLE shopItemDescrip(
 	by2 varchar(100)
 );
 
---商品id
---超市id
---数量
---是否上架
---备用字段1
---备用字段2
+##商品id
+##超市id
+##数量
+##是否上架
+##备用字段1
+##备用字段2
 create TABLE shopItem(
     shopItemid int,
     shopid int,
@@ -92,13 +92,13 @@ create table user(
 	shopId int
 );
 
---销售编号 saleid
---商店编号 shopid
---商品编号 itemid
---商品种类 itemtype
---销售数量 itemnum
---销售价格 saleprice
---销售日期 saledate
+##销售编号 saleid
+##商店编号 shopid
+##商品编号 itemid
+##商品种类 itemtype
+##销售数量 itemnum
+##销售价格 saleprice
+##销售日期 saledate
 CREATE table salebill(
 		saleid int PRIMARY key auto_increment,
 		shopid int ,
@@ -111,12 +111,12 @@ CREATE table salebill(
 
 
 
---商店编号 shopid
---商店名字 shopname
---商店地址 shopaddress
---商店负责人 shopperson
---商店联系方式 shopphone
---商店状态 shopstate
+##商店编号 shopid
+##商店名字 shopname
+##商店地址 shopaddress
+##商店负责人 shopperson
+##商店联系方式 shopphone
+##商店状态 shopstate
 
 create table shop(
 	shopid int PRIMARY key auto_increment,
@@ -127,9 +127,9 @@ create table shop(
 	shopstate varchar(2)
 );
 
---商品种类编号
---商品名称
---父编号
+##商品种类编号
+##商品名称
+##父编号
 CREATE TABLE `shopitemtype`  (
   `typeId` int(11) NOT NULL AUTO_INCREMENT,
   `typeName` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
@@ -141,14 +141,14 @@ CREATE TABLE `shopitemtype`  (
 CREATE table notice(
 id int PRIMARY KEY auto_increment,
 title VARCHAR(2048),
-content VARCHAR(20480),
+content VARCHAR(10240),
 date varchar(32)
 );
 
 CREATE table notice_shop(
 id int,
 shopid int,
-isRead int --1未读2已读3警告
+isRead int ##1未读2已读3警告
 )
 
 

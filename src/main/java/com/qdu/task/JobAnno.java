@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 public class JobAnno {
 	@Resource
 	NoticeService service;
-	@Scheduled(cron="0 0 12 * * ?")//cron="0 0 12 * * ?"0/5 * * * * ?
+	@Scheduled(cron="0 0 0 * * ?")//cron="0 0 12 * * ?"0/5 * * * * ?
 	public void jobAnno(){
 		service.buhuoNotice();
 	}
