@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
 
@@ -130,6 +132,28 @@ public class ShopItemController {
             msg.setMsg("添加失败");
         }
         return msg;
+    }
+
+
+    @RequestMapping(value="/batchAdding")
+    @ResponseBody
+    public ResultMsg batchAdding(MultipartFile file,HttpSession session) {
+        ResultMsg msg = new ResultMsg();
+        Object user = session.getAttribute("user");
+        if(user == null) {
+            msg.setCode(403);
+            msg.setMsg("登录后重试!");
+            return msg;
+        }
+
+        try {
+            return shopItemService.add(((User)user).getShopId(),file);
+        } catch(Exception e) {
+            msg.setCode(500);
+            msg.setMsg(e.getMessage());
+            return msg;
+        }
+
     }
 
 

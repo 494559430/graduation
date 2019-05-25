@@ -3,6 +3,8 @@ package com.qdu.service;
 import com.qdu.bean.ShopItem_Descript;
 import com.qdu.bean.Shopitem;
 import com.qdu.bean.Shopitemdescrip;
+import com.qdu.utils.ResultMsg;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 
@@ -25,6 +27,8 @@ public interface ShopItemService
     int add(Shopitemdescrip shopitemdescrip);
 
     int add(Shopitem shopitem);
+
+    ResultMsg add(int shopId, MultipartFile file);
 
     ShopItem_Descript getDetail2(Integer shopitemid,Integer shopid);
 
